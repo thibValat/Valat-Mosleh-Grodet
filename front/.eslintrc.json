@@ -1,0 +1,51 @@
+{
+  "extends": [
+    "eslint:recommended",
+    // ESLint recommended rules
+    "plugin:react/recommended",
+    // React recommended rules
+    "plugin:@typescript-eslint/recommended",
+    // TypeScript recommended rules
+    "plugin:@typescript-eslint/eslint-recommended",
+    // ESLint overrides for TypeScript
+    "prettier",
+    // Prettier rules
+    "plugin:prettier/recommended",
+    // Prettier plugin integration
+    "plugin:react-hooks/recommended",
+    // Recommended rules for React hooks
+    "next",
+    // Next.js recommended rules
+    "next/core-web-vitals"
+    // Next.js recommended rules for Core Web Vitals
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": true,
+    "tsconfigRootDir": "."
+  },
+  "plugins": ["@typescript-eslint"],
+  "root": true,
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "prettier/prettier": [
+      "warn",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "react/no-unescaped-entities": "off",
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "function-declaration" }
+    ]
+  }
+}
