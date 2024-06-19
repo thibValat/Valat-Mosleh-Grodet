@@ -26,10 +26,10 @@ public class Comment {
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sender_id")
+    @JoinColumn(name = "sender")
     private Account sender;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "target_id")
+    @JoinColumn(name = "target")
     private Account target;
 }

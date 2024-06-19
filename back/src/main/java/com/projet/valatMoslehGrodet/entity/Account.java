@@ -25,7 +25,7 @@ public class Account {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "address")
     private Address address;
 
     @Column(name = "birth_date")
