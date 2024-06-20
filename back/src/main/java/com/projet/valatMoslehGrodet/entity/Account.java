@@ -46,4 +46,5 @@ public class Account {
 
     @ManyToMany(mappedBy = "participants", fetch = FetchType.LAZY)
     private List<Event> events;
+
 }
