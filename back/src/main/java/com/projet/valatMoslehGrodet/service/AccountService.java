@@ -1,6 +1,7 @@
 package com.projet.valatMoslehGrodet.service;
 
-import com.projet.valatMoslehGrodet.dto.AccountDTO;
+import com.projet.valatMoslehGrodet.dto.*;
+import com.projet.valatMoslehGrodet.entity.Account;
 import com.projet.valatMoslehGrodet.mapper.AccountMapper;
 import com.projet.valatMoslehGrodet.repository.AccountRepository;
 import lombok.AllArgsConstructor;
@@ -20,8 +21,13 @@ public class AccountService {
     public AccountDTO getById(Long id){
         return accountMapper.toDTO(accountRepository.findById(id).orElse(null));
     }
-    public AccountDTO createAccount(AccountDTO account){
-        return  accountMapper.toDTO(accountRepository.save(accountMapper.toEntity(account)));
+    public AccountDTO createAccount(AccountCreationDTO accountCreationDTO){
+        Account accountToSave = new Account();
+        accountToSave = accountMapper.toEntity(accountCreationDTO);
+        accountRepository.save(accountToSave);
+
+        return accountMapper.toDTO(accountToSave);
+
     }
 
 }

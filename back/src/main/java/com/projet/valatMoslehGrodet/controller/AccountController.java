@@ -1,5 +1,6 @@
 package com.projet.valatMoslehGrodet.controller;
 
+import com.projet.valatMoslehGrodet.dto.AccountCreationDTO;
 import com.projet.valatMoslehGrodet.dto.AccountDTO;
 import com.projet.valatMoslehGrodet.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ public class AccountController {
         return ResponseEntity.ok(accountService.getById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<AccountDTO> save(@RequestBody AccountDTO accountdto) {
-        return ResponseEntity.ok(accountService.createAccount(accountdto));
+    @PostMapping("/inscription")
+    public ResponseEntity<AccountDTO> save(@RequestBody AccountCreationDTO accountCreationDto) {
+        return ResponseEntity.ok(accountService.createAccount(accountCreationDto));
     }
 
 }

@@ -11,10 +11,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountDTO {
-    private Long id;
+public class AccountCreationDTO {
     @NotNull
-    private String firstname;
+    private String firstName;
     @NotNull
     private String lastName;
     @NotNull
@@ -22,11 +21,6 @@ public class AccountDTO {
     @NotNull
     private String email;
     private AddressDTO address;
-    private String postCode;
     private Date birthDate;
-    private List<String> preferences;
-    private Float rating;
-    private List<CommentDTO> comments;
-    private String description;
-    private List<EventDTO> events;
+
 }

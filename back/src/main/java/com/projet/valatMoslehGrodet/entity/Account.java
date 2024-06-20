@@ -18,6 +18,12 @@ public class Account {
     @Column(name = "account_id")
     private Long id;
 
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
+
+    @Column(name = "lastName", nullable = false)
+    private String lastName;
+
     @Column(name = "password", nullable = false)
     private String password;
 
