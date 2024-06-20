@@ -20,7 +20,9 @@ public class AccountCreationDTO {
     private String password;
     @NotNull
     private String email;
+    @NotNull
     private AddressDTO address;
+    @NotNull
     private Date birthDate;
 
 }

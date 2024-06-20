@@ -1,0 +1,52 @@
+{
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer", "format": "int64" },
+    "description": { "type": "string" },
+    "organizer": { "$ref": "#/components/schemas/AccountDTO" },
+    "eventTypeId": { "type": "integer", "format": "int64" },
+    "eventType": { "type": "string" },
+    "name": { "type": "string" },
+    "date": { "type": "string", "format": "date-time" },
+    "address": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer", "format": "int64" },
+        "city": { "type": "string" },
+        "postCode": { "type": "string" },
+        "streetName": { "type": "string" },
+        "streetNumber": { "type": "string" }
+      },
+      "required": ["city", "postCode", "streetName", "streetNumber"],
+      "x-readme-ref-name": "AddressDTO"
+    },
+    "capacity": { "type": "integer", "format": "int32" },
+    "participants": {
+      "type": "array",
+      "items": { "$ref": "#/components/schemas/AccountDTO" }
+    },
+    "price": { "type": "number", "format": "float" },
+    "demands": {
+      "type": "array",
+      "items": { "$ref": "#/components/schemas/DemandDTO" }
+    },
+    "requirements": { "type": "array", "items": { "type": "string" } },
+    "alcoolAllowed": { "type": "boolean" },
+    "additionalProperties": {
+      "type": "object",
+      "additionalProperties": { "type": "object" }
+    }
+  },
+  "required": [
+    "address",
+    "alcoolAllowed",
+    "capacity",
+    "date",
+    "description",
+    "eventType",
+    "name",
+    "price",
+    "requirements"
+  ],
+  "x-readme-ref-name": "EventDTO"
+}

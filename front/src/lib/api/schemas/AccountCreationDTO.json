@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "firstName": { "type": "string" },
+    "lastName": { "type": "string" },
+    "password": { "type": "string" },
+    "email": { "type": "string" },
+    "address": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer", "format": "int64" },
+        "city": { "type": "string" },
+        "postCode": { "type": "string" },
+        "streetName": { "type": "string" },
+        "streetNumber": { "type": "string" }
+      },
+      "required": ["city", "postCode", "streetName", "streetNumber"],
+      "x-readme-ref-name": "AddressDTO"
+    },
+    "birthDate": { "type": "string", "format": "date-time" }
+  },
+  "required": [
+    "address",
+    "birthDate",
+    "email",
+    "firstName",
+    "lastName",
+    "password"
+  ],
+  "x-readme-ref-name": "AccountCreationDTO"
+}
