@@ -477,3 +477,338 @@
 1718884706130|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=5
 1718884706133|1|statement|select d1_0.event_id,d1_0.id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=5
 1718884706135|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=5
+1718885022384|8|statement|select * from information_schema.sequences
+1718885022440|32|statement|alter table if exists demand add column demand_id bigserial not null
+1718885022466|0|statement|select * from "public"."address" where 1=0
+1718885022472|0|statement|select * from "public"."address" where 1=0
+1718885022485|1|statement|select * from "public"."account" where 1=0
+1718885022498|1|statement|select * from "public"."board_game_event" where 1=0
+1718885022510|0|statement|select * from "public"."account" where 1=0
+1718885022512|0|statement|select * from "public"."account" where 1=0
+1718885022515|0|statement|select * from "public"."account" where 1=0
+1718885022517|0|statement|select * from "public"."account" where 1=0
+1718885022527|0|statement|select * from "public"."account" where 1=0
+1718885022531|1|statement|select * from "public"."event" where 1=0
+1718885022535|0|statement|select * from "public"."event" where 1=0
+1718885022545|0|statement|select * from "public"."account" where 1=0
+1718885022547|0|statement|select * from "public"."account" where 1=0
+1718885022551|0|statement|select * from "public"."address" where 1=0
+1718885022560|0|statement|select * from "public"."account" where 1=0
+1718885022562|0|statement|select * from "public"."event" where 1=0
+1718885022573|0|statement|select * from "public"."event" where 1=0
+1718885022585|1|statement|select * from "public"."lan_event" where 1=0
+1718885022597|1|statement|select * from "public"."party_event" where 1=0
+1718885599443|16|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 join address a1_0 on a1_0.address_id=e1_0.address where (NULL is null or a1_0.city=NULL) and (NULL is null or e1_0.event_type=NULL) and (NULL is null or e1_0.capacity<=NULL) and (NULL is null or e1_0.price<=NULL) and (NULL is null or e1_0.date=NULL) offset 0 rows fetch first 5 rows only
+1718885711562|1|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0
+1718885711579|0|commit|
+1718885711585|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=5
+1718885711590|3|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=5
+1718885711591|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=5
+1718885811690|0|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0
+1718885811691|0|commit|
+1718885811692|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=5
+1718885811693|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=5
+1718885811694|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=5
+1718885861607|0|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 join address a1_0 on a1_0.address_id=e1_0.address where (NULL is null or a1_0.city=NULL) and (NULL is null or e1_0.event_type=NULL) and (NULL is null or e1_0.capacity<=NULL) and (NULL is null or e1_0.price<=NULL) and (NULL is null or e1_0.date=NULL) offset 0 rows fetch first 5 rows only
+1718886087773|11|statement|select * from information_schema.sequences
+1718886087822|1|statement|select * from "public"."address" where 1=0
+1718886087829|0|statement|select * from "public"."address" where 1=0
+1718886087842|2|statement|select * from "public"."account" where 1=0
+1718886087854|0|statement|select * from "public"."board_game_event" where 1=0
+1718886087867|0|statement|select * from "public"."account" where 1=0
+1718886087874|0|statement|select * from "public"."account" where 1=0
+1718886087877|0|statement|select * from "public"."account" where 1=0
+1718886087880|0|statement|select * from "public"."account" where 1=0
+1718886087891|0|statement|select * from "public"."account" where 1=0
+1718886087895|1|statement|select * from "public"."event" where 1=0
+1718886087900|0|statement|select * from "public"."event" where 1=0
+1718886087911|0|statement|select * from "public"."account" where 1=0
+1718886087912|0|statement|select * from "public"."account" where 1=0
+1718886087915|0|statement|select * from "public"."address" where 1=0
+1718886087925|0|statement|select * from "public"."account" where 1=0
+1718886087927|0|statement|select * from "public"."event" where 1=0
+1718886087936|0|statement|select * from "public"."event" where 1=0
+1718886087949|1|statement|select * from "public"."lan_event" where 1=0
+1718886087962|1|statement|select * from "public"."party_event" where 1=0
+1718886202572|8|statement|select * from information_schema.sequences
+1718886202618|1|statement|select * from "public"."address" where 1=0
+1718886202624|0|statement|select * from "public"."address" where 1=0
+1718886202637|2|statement|select * from "public"."account" where 1=0
+1718886202651|0|statement|select * from "public"."board_game_event" where 1=0
+1718886202663|0|statement|select * from "public"."account" where 1=0
+1718886202665|0|statement|select * from "public"."account" where 1=0
+1718886202666|0|statement|select * from "public"."account" where 1=0
+1718886202669|0|statement|select * from "public"."account" where 1=0
+1718886202679|0|statement|select * from "public"."account" where 1=0
+1718886202683|1|statement|select * from "public"."event" where 1=0
+1718886202687|0|statement|select * from "public"."event" where 1=0
+1718886202698|0|statement|select * from "public"."account" where 1=0
+1718886202700|0|statement|select * from "public"."account" where 1=0
+1718886202701|0|statement|select * from "public"."address" where 1=0
+1718886202711|0|statement|select * from "public"."account" where 1=0
+1718886202714|0|statement|select * from "public"."event" where 1=0
+1718886202723|0|statement|select * from "public"."event" where 1=0
+1718886202734|1|statement|select * from "public"."lan_event" where 1=0
+1718886202746|0|statement|select * from "public"."party_event" where 1=0
+1718886389802|7|statement|select * from information_schema.sequences
+1718886389844|0|statement|select * from "public"."address" where 1=0
+1718886389850|0|statement|select * from "public"."address" where 1=0
+1718886389862|1|statement|select * from "public"."account" where 1=0
+1718886389876|0|statement|select * from "public"."board_game_event" where 1=0
+1718886389888|0|statement|select * from "public"."account" where 1=0
+1718886389890|0|statement|select * from "public"."account" where 1=0
+1718886389893|0|statement|select * from "public"."account" where 1=0
+1718886389895|0|statement|select * from "public"."account" where 1=0
+1718886389906|0|statement|select * from "public"."account" where 1=0
+1718886389909|1|statement|select * from "public"."event" where 1=0
+1718886389914|0|statement|select * from "public"."event" where 1=0
+1718886389923|0|statement|select * from "public"."account" where 1=0
+1718886389925|0|statement|select * from "public"."account" where 1=0
+1718886389927|0|statement|select * from "public"."address" where 1=0
+1718886389936|0|statement|select * from "public"."account" where 1=0
+1718886389938|0|statement|select * from "public"."event" where 1=0
+1718886389948|0|statement|select * from "public"."event" where 1=0
+1718886389961|0|statement|select * from "public"."lan_event" where 1=0
+1718886389974|0|statement|select * from "public"."party_event" where 1=0
+1718886396159|4|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 join address a1_0 on a1_0.address_id=e1_0.address where ('Paris' is null or a1_0.city='Paris') and (NULL is null or e1_0.event_type=NULL) and (NULL is null or e1_0.capacity<=NULL) and (50.0 is null or e1_0.price<=50.0) and (NULL is null or e1_0.date=NULL) offset 0 rows fetch first 10 rows only
+1718886751122|0|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 join address a1_0 on a1_0.address_id=e1_0.address where ('Paris' is null or a1_0.city='Paris') and (NULL is null or e1_0.event_type=NULL) and (NULL is null or e1_0.capacity<=NULL) and (50.0 is null or e1_0.price<=50.0) and (NULL is null or e1_0.date=NULL) offset 0 rows fetch first 10 rows only
+1718887614170|5|statement|select e1_0.event_id,a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price,d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from event e1_0 left join address a1_0 on a1_0.address_id=e1_0.address left join demand d1_0 on e1_0.event_id=d1_0.event_id where e1_0.event_id=0
+1718887614259|6|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (NULL,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',0,'string',NULL,0.0)
+1718887614331|3|commit|
+1718887652070|0|statement|select e1_0.event_id,a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price,d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from event e1_0 left join address a1_0 on a1_0.address_id=e1_0.address left join demand d1_0 on e1_0.event_id=d1_0.event_id where e1_0.event_id=0
+1718887652073|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (NULL,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',NULL,'string',NULL,0.0)
+1718887652075|0|commit|
+1718887698645|2|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718887698648|2|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (1,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',NULL,'string',NULL,0.0)
+1718887698650|0|commit|
+1718888260184|7|statement|select * from information_schema.sequences
+1718888260210|6|statement|alter table if exists account add column first_name varchar(255) not null
+1718888260211|0|statement|alter table if exists account add column last_name varchar(255) not null
+1718888260230|0|statement|select * from "public"."address" where 1=0
+1718888260235|0|statement|select * from "public"."address" where 1=0
+1718888260247|2|statement|select * from "public"."account" where 1=0
+1718888260259|1|statement|select * from "public"."board_game_event" where 1=0
+1718888260268|0|statement|select * from "public"."account" where 1=0
+1718888260269|0|statement|select * from "public"."account" where 1=0
+1718888260270|0|statement|select * from "public"."account" where 1=0
+1718888260272|0|statement|select * from "public"."account" where 1=0
+1718888260280|0|statement|select * from "public"."account" where 1=0
+1718888260283|1|statement|select * from "public"."event" where 1=0
+1718888260286|0|statement|select * from "public"."event" where 1=0
+1718888260296|0|statement|select * from "public"."account" where 1=0
+1718888260297|0|statement|select * from "public"."account" where 1=0
+1718888260299|0|statement|select * from "public"."address" where 1=0
+1718888260309|0|statement|select * from "public"."account" where 1=0
+1718888260310|0|statement|select * from "public"."event" where 1=0
+1718888260321|0|statement|select * from "public"."event" where 1=0
+1718888260332|0|statement|select * from "public"."lan_event" where 1=0
+1718888260344|0|statement|select * from "public"."party_event" where 1=0
+1718888273230|3|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718888273255|1|commit|
+1718888273265|2|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718888273283|1|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (2,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',1,'string',NULL,0.0)
+1718888273305|0|commit|
+1718888462270|0|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718888462271|0|commit|
+1718888462272|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718888462273|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (3,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',2,'string',NULL,0.0)
+1718888462274|0|commit|
+1718890080675|1|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718890080677|1|commit|
+1718890080680|1|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718890080684|1|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (4,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',3,'string',NULL,0.0)
+1718890080685|0|commit|
+1718890263881|5|statement|select * from information_schema.sequences
+1718890263917|0|statement|select * from "public"."address" where 1=0
+1718890263922|0|statement|select * from "public"."address" where 1=0
+1718890263932|1|statement|select * from "public"."account" where 1=0
+1718890263942|0|statement|select * from "public"."board_game_event" where 1=0
+1718890263952|0|statement|select * from "public"."account" where 1=0
+1718890263953|0|statement|select * from "public"."account" where 1=0
+1718890263954|0|statement|select * from "public"."account" where 1=0
+1718890263956|0|statement|select * from "public"."account" where 1=0
+1718890263963|0|statement|select * from "public"."account" where 1=0
+1718890263966|1|statement|select * from "public"."event" where 1=0
+1718890263969|0|statement|select * from "public"."event" where 1=0
+1718890263977|0|statement|select * from "public"."account" where 1=0
+1718890263978|0|statement|select * from "public"."account" where 1=0
+1718890263979|0|statement|select * from "public"."address" where 1=0
+1718890263988|0|statement|select * from "public"."account" where 1=0
+1718890263989|0|statement|select * from "public"."event" where 1=0
+1718890263998|0|statement|select * from "public"."event" where 1=0
+1718890264008|0|statement|select * from "public"."lan_event" where 1=0
+1718890264019|1|statement|select * from "public"."party_event" where 1=0
+1718890297641|1|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718890297650|1|commit|
+1718890297653|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718890297663|1|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (5,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',4,'string',NULL,0.0)
+1718890297670|0|commit|
+1718890456373|0|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718890456374|0|commit|
+1718890456375|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718890456376|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (6,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',5,'string',NULL,0.0)
+1718890456377|0|commit|
+1718890500304|0|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718890500306|0|commit|
+1718890500307|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718890500310|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (7,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',6,'string',NULL,0.0)
+1718890500311|0|commit|
+1718890517693|6|statement|select * from information_schema.sequences
+1718890517729|0|statement|select * from "public"."address" where 1=0
+1718890517734|0|statement|select * from "public"."address" where 1=0
+1718890517746|1|statement|select * from "public"."account" where 1=0
+1718890517758|1|statement|select * from "public"."board_game_event" where 1=0
+1718890517767|0|statement|select * from "public"."account" where 1=0
+1718890517769|0|statement|select * from "public"."account" where 1=0
+1718890517770|0|statement|select * from "public"."account" where 1=0
+1718890517772|0|statement|select * from "public"."account" where 1=0
+1718890517780|0|statement|select * from "public"."account" where 1=0
+1718890517783|1|statement|select * from "public"."event" where 1=0
+1718890517786|0|statement|select * from "public"."event" where 1=0
+1718890517795|0|statement|select * from "public"."account" where 1=0
+1718890517797|0|statement|select * from "public"."account" where 1=0
+1718890517798|0|statement|select * from "public"."address" where 1=0
+1718890517807|0|statement|select * from "public"."account" where 1=0
+1718890517809|0|statement|select * from "public"."event" where 1=0
+1718890517818|0|statement|select * from "public"."event" where 1=0
+1718890517828|0|statement|select * from "public"."lan_event" where 1=0
+1718890517839|0|statement|select * from "public"."party_event" where 1=0
+1718890523262|1|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718890523278|2|commit|
+1718890523281|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718890523290|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (8,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',7,'string',NULL,0.0)
+1718890523296|0|commit|
+1718891008373|6|statement|select * from information_schema.sequences
+1718891008409|0|statement|select * from "public"."address" where 1=0
+1718891008413|0|statement|select * from "public"."address" where 1=0
+1718891008425|1|statement|select * from "public"."account" where 1=0
+1718891008436|0|statement|select * from "public"."board_game_event" where 1=0
+1718891008445|0|statement|select * from "public"."account" where 1=0
+1718891008447|0|statement|select * from "public"."account" where 1=0
+1718891008449|0|statement|select * from "public"."account" where 1=0
+1718891008450|0|statement|select * from "public"."account" where 1=0
+1718891008459|0|statement|select * from "public"."account" where 1=0
+1718891008462|1|statement|select * from "public"."event" where 1=0
+1718891008465|0|statement|select * from "public"."event" where 1=0
+1718891008474|0|statement|select * from "public"."account" where 1=0
+1718891008475|0|statement|select * from "public"."account" where 1=0
+1718891008477|0|statement|select * from "public"."address" where 1=0
+1718891008485|0|statement|select * from "public"."account" where 1=0
+1718891008486|0|statement|select * from "public"."event" where 1=0
+1718891008496|0|statement|select * from "public"."event" where 1=0
+1718891008505|0|statement|select * from "public"."lan_event" where 1=0
+1718891008515|1|statement|select * from "public"."party_event" where 1=0
+1718891014224|1|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718891014235|1|commit|
+1718891014238|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718891014247|1|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (9,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',8,'string',NULL,0.0)
+1718891014253|0|commit|
+1718891042888|0|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718891042890|0|commit|
+1718891042891|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718891042894|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (10,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',9,'string',NULL,0.0)
+1718891042896|0|commit|
+1718891053582|0|statement|insert into board_game_event (bring_your_own) values (NULL)
+1718891053584|1|commit|
+1718891053586|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718891053588|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (11,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',10,'string',NULL,0.0)
+1718891053589|0|commit|
+1718891071046|0|statement|insert into board_game_event (bring_your_own) values (true)
+1718891071048|1|commit|
+1718891071050|1|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718891071051|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (12,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',11,'string',NULL,0.0)
+1718891071052|0|commit|
+1718891843827|0|statement|insert into board_game_event (bring_your_own) values (true)
+1718891843832|1|statement|insert into board_game_event_board_games (board_game_event_board_game_event_id,board_games) values (12,'monopoly')
+1718891843833|0|statement|insert into board_game_event_board_games (board_game_event_board_game_event_id,board_games) values (12,'bonne paye')
+1718891843834|0|commit|
+1718891843836|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718891843841|2|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (13,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',12,'string',NULL,0.0)
+1718891843845|0|commit|
+1718891889544|11|statement|insert into board_game_event (bring_your_own) values (true)
+1718891889553|0|rollback|
+1718891902390|7|statement|select * from information_schema.sequences
+1718891902422|11|statement|create table board_game_event (board_game_event_id bigserial not null, bring_your_own boolean, primary key (board_game_event_id))
+1718891902439|0|statement|select * from "public"."address" where 1=0
+1718891902445|0|statement|select * from "public"."address" where 1=0
+1718891902456|1|statement|select * from "public"."account" where 1=0
+1718891902473|8|statement|alter table if exists board_game_event_board_games add constraint FKi9tuaqsnskyul53gwjf7ajjxl foreign key (board_game_event_board_game_event_id) references board_game_event
+1718891902484|0|statement|select * from "public"."account" where 1=0
+1718891902486|0|statement|select * from "public"."account" where 1=0
+1718891902487|0|statement|select * from "public"."account" where 1=0
+1718891902489|0|statement|select * from "public"."account" where 1=0
+1718891902497|0|statement|select * from "public"."account" where 1=0
+1718891902500|1|statement|select * from "public"."event" where 1=0
+1718891902504|0|statement|select * from "public"."event" where 1=0
+1718891902512|0|statement|select * from "public"."account" where 1=0
+1718891902514|0|statement|select * from "public"."account" where 1=0
+1718891902516|0|statement|select * from "public"."address" where 1=0
+1718891902523|0|statement|select * from "public"."account" where 1=0
+1718891902524|0|statement|select * from "public"."event" where 1=0
+1718891902532|0|statement|select * from "public"."event" where 1=0
+1718891902541|0|statement|select * from "public"."lan_event" where 1=0
+1718891902552|0|statement|select * from "public"."party_event" where 1=0
+1718891990616|7|statement|select * from information_schema.sequences
+1718891990638|8|statement|create table account (account_id bigserial not null, birth_date timestamp(6), description varchar(255), email varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, password varchar(255) not null, rating float4, address bigint, primary key (account_id))
+1718891990640|0|statement|create table account_preferences (account_account_id bigint not null, preferences varchar(255))
+1718891990645|5|statement|create table address (address_id bigserial not null, city varchar(255), post_code varchar(255), street_name varchar(255), street_number varchar(255), primary key (address_id))
+1718891990648|2|statement|create table board_game_event (board_game_event_id bigserial not null, bring_your_own boolean, primary key (board_game_event_id))
+1718891990649|0|statement|create table board_game_event_board_games (board_game_event_board_game_event_id bigint not null, board_games varchar(255))
+1718891990654|4|statement|create table comment (comment_id bigserial not null, content varchar(255), rating integer, title varchar(255), sender bigint, target bigint, primary key (comment_id))
+1718891990657|2|statement|create table demand (demand_id bigserial not null, is_accepted boolean, event_id bigint, account bigint, primary key (demand_id))
+1718891990663|5|statement|create table event (event_id bigserial not null, alcool_allowed boolean, capacity integer, date timestamp(6), description varchar(255), event_type varchar(255) check (event_type in ('LAN_EVENT','BOARD_GAME_EVENT','PARTY_EVENT')), event_type_id bigint, name varchar(255), price float4, address bigint, organizer bigint, primary key (event_id))
+1718891990664|0|statement|create table event_participants (event_id bigint not null, account_id bigint not null)
+1718891990665|0|statement|create table event_requirements (event_event_id bigint not null, requirements varchar(255))
+1718891990668|2|statement|create table lan_event (lan_event_id bigserial not null, bring_your_own boolean, console varchar(255) check (console in ('PC','PLAYSTATION','XBOX','NINTENDO','OTHER')), primary key (lan_event_id))
+1718891990669|0|statement|create table lan_event_video_games (lan_event_lan_event_id bigint not null, video_games varchar(255))
+1718891990672|3|statement|create table party_event (party_event_id bigserial not null, primary key (party_event_id))
+1718891990673|0|statement|create table party_event_music_type (party_event_party_event_id bigint not null, music_type varchar(255))
+1718891990676|2|statement|alter table if exists account drop constraint if exists UK_q0uja26qgu1atulenwup9rxyr
+1718891990679|2|statement|alter table if exists account add constraint UK_q0uja26qgu1atulenwup9rxyr unique (email)
+1718891990679|0|statement|alter table if exists account drop constraint if exists UK_sa3ur84gbq08s7gjbdo9irci1
+1718891990681|1|statement|alter table if exists account add constraint UK_sa3ur84gbq08s7gjbdo9irci1 unique (address)
+1718891990682|0|statement|alter table if exists event drop constraint if exists UK_t1o2hx7tpb3cwarktwyv4q1wf
+1718891990684|1|statement|alter table if exists event add constraint UK_t1o2hx7tpb3cwarktwyv4q1wf unique (address)
+1718891990687|2|statement|alter table if exists account add constraint FK6vu7ra4kvrq5nsqq9bclb9ods foreign key (address) references address
+1718891990688|0|statement|alter table if exists account_preferences add constraint FKdmps786x9o49yhxrgnujeoiav foreign key (account_account_id) references account
+1718891990689|1|statement|alter table if exists board_game_event_board_games add constraint FKi9tuaqsnskyul53gwjf7ajjxl foreign key (board_game_event_board_game_event_id) references board_game_event
+1718891990691|1|statement|alter table if exists comment add constraint FKddwcdp3p5kbn0tu4weld9muu foreign key (sender) references account
+1718891990691|0|statement|alter table if exists comment add constraint FKjsnehp6m8jh0yqekg0koi670c foreign key (target) references account
+1718891990693|1|statement|alter table if exists demand add constraint FK7j4oqnft1v4g9cb7tdn0er1ff foreign key (event_id) references event
+1718891990694|1|statement|alter table if exists demand add constraint FK6g2g4f4u4tljlluh82b9aioek foreign key (account) references account
+1718891990695|1|statement|alter table if exists event add constraint FKnecpekdvfo3ndygsii3wl3meu foreign key (address) references address
+1718891990697|1|statement|alter table if exists event add constraint FKg2lve37unemw2dcuqp4s6gso1 foreign key (organizer) references account
+1718891990698|0|statement|alter table if exists event_participants add constraint FKhk2mb30bhcpv9qraph8sdvylb foreign key (account_id) references account
+1718891990699|0|statement|alter table if exists event_participants add constraint FK5232w1ta0icpkemgsxyw8a976 foreign key (event_id) references event
+1718891990700|0|statement|alter table if exists event_requirements add constraint FKb3bnmteaa3w99fdkepdt17iu3 foreign key (event_event_id) references event
+1718891990702|2|statement|alter table if exists lan_event_video_games add constraint FKol4ggak7evrsd46ungt225qan foreign key (lan_event_lan_event_id) references lan_event
+1718891990703|1|statement|alter table if exists party_event_music_type add constraint FKov7wjp62hswr8hfsr6shkkvo6 foreign key (party_event_party_event_id) references party_event
+1718892028317|1|statement|insert into board_game_event (bring_your_own) values (true)
+1718892028333|1|statement|insert into board_game_event_board_games (board_game_event_board_game_event_id,board_games) values (1,'monopoly')
+1718892028334|0|statement|insert into board_game_event_board_games (board_game_event_board_game_event_id,board_games) values (1,'bonne paye')
+1718892028336|0|commit|
+1718892028339|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718892028342|1|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (1,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',1,'string',NULL,0.0)
+1718892028344|0|commit|
+1718892340874|5|statement|select * from information_schema.sequences
+1718892340912|0|statement|select * from "public"."address" where 1=0
+1718892340925|1|statement|select * from "public"."account" where 1=0
+1718892340936|1|statement|select * from "public"."board_game_event" where 1=0
+1718892340945|0|statement|select * from "public"."account" where 1=0
+1718892340946|0|statement|select * from "public"."account" where 1=0
+1718892340953|0|statement|select * from "public"."account" where 1=0
+1718892340956|1|statement|select * from "public"."event" where 1=0
+1718892340965|0|statement|select * from "public"."account" where 1=0
+1718892340966|0|statement|select * from "public"."address" where 1=0
+1718892340973|0|statement|select * from "public"."account" where 1=0
+1718892340974|0|statement|select * from "public"."event" where 1=0
+1718892340981|0|statement|select * from "public"."event" where 1=0
+1718892340988|0|statement|select * from "public"."lan_event" where 1=0
+1718892340998|0|statement|select * from "public"."party_event" where 1=0
+1718892347718|1|statement|insert into board_game_event (bring_your_own) values (true)
+1718892347732|1|statement|insert into board_game_event_board_games (board_game_event_board_game_event_id,board_games) values (2,'monopoly')
+1718892347733|0|statement|insert into board_game_event_board_games (board_game_event_board_game_event_id,board_games) values (2,'bonne paye')
+1718892347737|2|commit|
+1718892347739|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718892347742|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (2,true,0,'2024-06-20T14:44:49.160+0200','string','BOARD_GAME_EVENT',2,'string',NULL,0.0)
+1718892347744|0|commit|

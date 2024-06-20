@@ -1,12 +1,9 @@
 package com.projet.valatMoslehGrodet.service;
 
 import com.projet.valatMoslehGrodet.dto.EventDTO;
-import com.projet.valatMoslehGrodet.entity.Account;
-import com.projet.valatMoslehGrodet.entity.Event;
-import com.projet.valatMoslehGrodet.entity.PartyEvent;
+import com.projet.valatMoslehGrodet.entity.*;
 import com.projet.valatMoslehGrodet.mapper.EventMapper;
-import com.projet.valatMoslehGrodet.repository.AccountRepository;
-import com.projet.valatMoslehGrodet.repository.EventRepository;
+import com.projet.valatMoslehGrodet.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -24,11 +21,35 @@ public class EventService {
     private EventMapper eventMapper;
 
     private AccountRepository accountRepository;
+    private LanEventRepository lanEventRepository;
+    private BoardGameEventRepository boardGameEventRepository;
+    private PartyEventRepository partyEventRepository;
 
 
     @CacheEvict(value = "events", allEntries = true)
     public EventDTO createEvent(EventDTO eventDTO) {
         Event event = eventMapper.toEntity(eventDTO);
+
+        if (event.getEventType() == EventType.LAN_EVENT) {
+            LanEvent lanEvent = new LanEvent();
+            lanEvent.setBringYourOwn((Boolean) eventDTO.getAdditionalProperty("bringYourOwn"));
+            lanEvent.setConsole((ConsoleType) eventDTO.getAdditionalProperty("console"));
+            lanEvent.setVideoGames((List<String>) eventDTO.getAdditionalProperty("videoGames"));
+            lanEvent = lanEventRepository.save(lanEvent);
+            event.setEventTypeId(lanEvent.getId());
+        } else if (event.getEventType() == EventType.BOARD_GAME_EVENT) {
+            BoardGameEvent boardGameEvent = new BoardGameEvent();
+            boardGameEvent.setBringYourOwn((Boolean) eventDTO.getAdditionalProperty("bringYourOwn"));
+            boardGameEvent.setBoardGames((List<String>) eventDTO.getAdditionalProperty("boardGames"));
+            boardGameEvent = boardGameEventRepository.save(boardGameEvent);
+            event.setEventTypeId(boardGameEvent.getId());
+        } else if (event.getEventType() == EventType.PARTY_EVENT) {
+            PartyEvent partyEvent = new PartyEvent();
+            partyEvent.setMusicType((List<String>) eventDTO.getAdditionalProperty("musicType"));
+            partyEvent = partyEventRepository.save(partyEvent);
+            event.setEventTypeId(partyEvent.getId());
+        }
+
         Event savedEvent = eventRepository.save(event);
         return eventMapper.toDTO(savedEvent);
     }
