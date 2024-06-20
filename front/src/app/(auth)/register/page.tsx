@@ -25,6 +25,13 @@ import {
 } from "@/components/ui/form";
 import FormInput from "@/components/FormInput";
 
+const AdresseSchema = z.object({
+    city: z.string(),
+    postCode: z.string(),
+    streetName: z.string(),
+    streetNumber: z.string(),
+})
+
 const RegisterSchema = z
   .object({
     firstName: z.string().min(2),
@@ -32,11 +39,9 @@ const RegisterSchema = z
     email: z.string().email(),
     password: z.string(),
     confirmPassword: z.string(),
-    birthdate: z.date(),
-    city: z.string(),
-    postcode: z.string(),
-    streetname: z.string(),
-    streetnumber: z.string(),
+    birthDate: z.date(),
+    address: AdresseSchema,
+
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -48,9 +53,33 @@ export default function Register() {
     resolver: zodResolver(RegisterSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
+const onSubmit = async (data: z.infer<typeof RegisterSchema>) => {
     console.log(data);
-  };
+    const postData = {
+      ...data,
+      confirmPassword: undefined,
+      birthDate: data.birthDate.toISOString(),
+    };
+
+    try {
+      const response = await fetch('http://localhost:8081/account/inscription', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('Success:', result);
+    } catch (error) {
+      console.error('Error during registration:', error);
+    }
+};
 
   return (
     <main>
@@ -109,7 +138,7 @@ export default function Register() {
               <div className="grid gap-2">
                 <FormField
                   control={form.control}
-                  name="birthdate"
+                  name="birthDate"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Birthdate</FormLabel>
@@ -129,15 +158,15 @@ export default function Register() {
                   <FormInput
                     control={form.control}
                     label="City"
-                    name="city"
+                    name="address.city"
                     InputProps={{ placeholder: "Paris" }}
                   />
                 </div>
                 <div className="grid gap-2">
                   <FormInput
                     control={form.control}
-                    label="Postcode"
-                    name="postcode"
+                    label="PostCode"
+                    name="address.postCode"
                     InputProps={{ placeholder: "75001" }}
                   />
                 </div>
@@ -147,7 +176,7 @@ export default function Register() {
                   <FormInput
                     control={form.control}
                     label="Street Name"
-                    name="streetname"
+                    name="address.streetName"
                     InputProps={{ placeholder: "Rue de Rivoli" }}
                   />
                 </div>
@@ -155,7 +184,7 @@ export default function Register() {
                   <FormInput
                     control={form.control}
                     label="Street Number"
-                    name="streetnumber"
+                    name="address.streetNumber"
                     InputProps={{ placeholder: "1" }}
                   />
                 </div>
