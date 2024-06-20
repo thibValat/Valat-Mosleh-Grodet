@@ -25,13 +25,21 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { EventType } from "@/lib/apiUtils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function CreateEventPage() {
   const form = useForm<z.infer<typeof eventDtoSchema>>({
     resolver: zodResolver(eventDtoSchema),
     defaultValues: {
       requirements: [],
-      eventType: "LAN_EVENT",
+      eventType: EventType.party,
     },
   });
 
@@ -57,6 +65,33 @@ export default function CreateEventPage() {
         <CardContent>
           <Form {...form}>
             <form className="grid gap-2" onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="grid gap-2">
+                <FormField
+                  control={form.control}
+                  name="eventType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Event Type</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value={EventType.party}>Party</SelectItem>
+                          <SelectItem value={EventType.board}>Board</SelectItem>
+                          <SelectItem value={EventType.lan}>LAN</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
               <div className="grid gap-2">
                 <FormInput
                   control={form.control}
