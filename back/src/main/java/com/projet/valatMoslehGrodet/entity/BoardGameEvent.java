@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class BoardGameEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

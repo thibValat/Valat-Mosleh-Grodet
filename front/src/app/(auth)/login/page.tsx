@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -8,10 +10,26 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Form } from "@/components/ui/form";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import FormInput from "@/components/FormInput";
+
+const LoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
 
 export default function Login() {
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
+  });
+
+  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
+    console.log(data);
+  };
+
   return (
     <main>
       <Card className="mx-auto max-w-sm">
@@ -22,26 +40,34 @@ export default function Login() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
+          <Form {...form}>
+            <form className="grid gap-4" onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="grid gap-2">
+                <FormInput
+                  control={form.control}
+                  name="email"
+                  label="Email"
+                  InputProps={{
+                    placeholder: "email@mail.com",
+                  }}
+                />
               </div>
-              <Input id="password" type="password" required />
-            </div>
-            <Button type="submit" className="w-full">
-              Login
-            </Button>
-          </div>
+              <div className="grid gap-2">
+                <FormInput
+                  control={form.control}
+                  name="password"
+                  label="Password"
+                  InputProps={{
+                    placeholder: "password",
+                    type: "password",
+                  }}
+                />
+              </div>
+              <Button type="submit" className="w-full">
+                Login
+              </Button>
+            </form>
+          </Form>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
             <Link href="/register" className="underline">

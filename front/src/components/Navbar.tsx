@@ -6,13 +6,19 @@ import { Sheet, SheetContent, SheetTrigger } from "@components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 
 type NavLink = {
   href: string;
@@ -25,6 +31,7 @@ type NavbarProps = {
 
 export default function Navbar({ links }: NavbarProps) {
   const pathname = usePathname();
+  const { setTheme, theme } = useTheme();
   return (
     <header className="sticky top-0 flex h-16 w-full items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className="hidden gap-6 text-lg font-medium md:flex md:flex-grow md:flex-row md:items-center md:gap-5 md:text-sm lg:flex lg:flex-grow lg:flex-row lg:gap-6">
@@ -68,8 +75,38 @@ export default function Navbar({ links }: NavbarProps) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuItem>
+              <Link href="/my-account">My Account</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/settings">Settings</Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
+              <DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                  <DropdownMenuCheckboxItem
+                    onClick={() => setTheme("light")}
+                    checked={theme === "light"}
+                  >
+                    Light
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    onClick={() => setTheme("dark")}
+                    checked={theme === "dark"}
+                  >
+                    Dark
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    onClick={() => setTheme("system")}
+                    checked={theme === "system"}
+                  >
+                    System
+                  </DropdownMenuCheckboxItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+            </DropdownMenuSub>
             <DropdownMenuItem>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

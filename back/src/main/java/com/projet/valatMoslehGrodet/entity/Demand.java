@@ -7,26 +7,25 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "address")
+@Table(name = "demand")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Address {
+public class Demand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
+    @Column(name = "demand_id")
     private Long id;
 
-    @Column(name = "city")
-    private String city;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account")
+    private Account sender;
 
-    @Column(name = "post_code")
-    private String postCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id")
+    private Event event;
 
-    @Column(name = "street_name")
-    private String streetName;
-
-    @Column(name = "street_number")
-    private String streetNumber;
+    @Column(name = "is_accepted")
+    private Boolean isAccepted;
 }

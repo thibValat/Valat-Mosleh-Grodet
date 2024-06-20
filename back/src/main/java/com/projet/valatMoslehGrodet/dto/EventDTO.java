@@ -14,6 +14,7 @@ public class EventDTO {
     private Long id;
     private String description;
     private AccountDTO organizer;
+    private Long eventTypeId;
     private String eventType;
     private String name;
     private Date date;
@@ -21,7 +22,7 @@ public class EventDTO {
     private Integer capacity;
     private List<AccountDTO> participants;
     private Float price;
-    private List<Boolean> demands;
+    private List<DemandDTO> demands;
     private List<String> requirements;
     private Boolean alcoolAllowed;
 }
