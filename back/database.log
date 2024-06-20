@@ -1,13 +1,335 @@
-1718715336614|1|statement|select e1_0.etudiant_id,e1_0.ecole_id,e1_0.nom,e1_0.prenom from etudiant e1_0
-1718715336638|0|commit|
-1718715336662|2|statement|select p1_0.etudiant_id,p1_1.projet_id,p1_1.nom_projet from etudiant_projet p1_0 join projet p1_1 on p1_1.projet_id=p1_0.projet_id where p1_0.etudiant_id = any ('{"2","1"}')
-1718719463356|9|statement|select * from information_schema.sequences
-1718719463405|1|statement|select * from "public"."adresse" where 1=0
-1718719463417|1|statement|select * from "public"."ecole" where 1=0
-1718719463428|2|statement|select * from "public"."etudiant" where 1=0
-1718719463432|1|statement|select * from "public"."projet" where 1=0
-1718719923781|9|statement|select * from information_schema.sequences
-1718719923825|1|statement|select * from "public"."adresse" where 1=0
-1718719923837|1|statement|select * from "public"."ecole" where 1=0
-1718719923849|2|statement|select * from "public"."etudiant" where 1=0
-1718719923853|0|statement|select * from "public"."projet" where 1=0
+1718801072964|15|statement|select * from information_schema.sequences
+1718801073003|16|statement|create table account (account_id bigserial not null, birth_date timestamp(6), description varchar(255), email varchar(255) not null, password varchar(255) not null, rating float4, address_id bigint, primary key (account_id))
+1718801073005|1|statement|create table account_preferences (account_account_id bigint not null, preferences varchar(255))
+1718801073011|4|statement|create table address (address_id bigserial not null, city varchar(255), post_code varchar(255), street_name varchar(255), street_number varchar(255), primary key (address_id))
+1718801073014|2|statement|create table board_game_event (board_game_event_id bigserial not null, bring_your_own boolean, primary key (board_game_event_id))
+1718801073014|0|statement|create table board_game_event_board_games (board_game_event_board_game_event_id bigint not null, board_games varchar(255))
+1718801073019|4|statement|create table comment (comment_id bigserial not null, content varchar(255), rating integer, title varchar(255), sender_id bigint, target_id bigint, primary key (comment_id))
+1718801073025|4|statement|create table event (event_id bigserial not null, alcool_allowed boolean, capacity integer, date timestamp(6), description varchar(255), event_type varchar(255) check (event_type in ('LAN_EVENT','BOARD_GAME_EVENT','PARTY_EVENT')), name varchar(255), price float4, address bigint, organize bigint, primary key (event_id))
+1718801073026|1|statement|create table event_demands (event_id bigint not null, is_accepted boolean)
+1718801073027|0|statement|create table event_participants (event_id bigint not null, account_id bigint not null)
+1718801073028|0|statement|create table event_requirements (event_event_id bigint not null, requirements varchar(255))
+1718801073031|2|statement|create table lan_event (lan_event_id bigserial not null, bring_your_own boolean, console varchar(255) check (console in ('PC','PLAYSTATION','XBOX','NINTENDO','OTHER')), primary key (lan_event_id))
+1718801073032|0|statement|create table lan_event_video_games (lan_event_lan_event_id bigint not null, video_games varchar(255))
+1718801073035|2|statement|create table party_event (party_event_id bigserial not null, primary key (party_event_id))
+1718801073035|0|statement|create table party_event_music_type (party_event_party_event_id bigint not null, music_type varchar(255))
+1718801073038|2|statement|alter table if exists account drop constraint if exists UK_q0uja26qgu1atulenwup9rxyr
+1718801073042|2|statement|alter table if exists account add constraint UK_q0uja26qgu1atulenwup9rxyr unique (email)
+1718801073042|0|statement|alter table if exists account drop constraint if exists UK_q4mt85fqye0pwgamg8vlw8mrb
+1718801073045|2|statement|alter table if exists account add constraint UK_q4mt85fqye0pwgamg8vlw8mrb unique (address_id)
+1718801073045|0|statement|alter table if exists event drop constraint if exists UK_t1o2hx7tpb3cwarktwyv4q1wf
+1718801073048|1|statement|alter table if exists event add constraint UK_t1o2hx7tpb3cwarktwyv4q1wf unique (address)
+1718801073054|5|statement|alter table if exists account add constraint FK9lna4d7ow9qbs27m5psafys58 foreign key (address_id) references address
+1718801073055|0|statement|alter table if exists account_preferences add constraint FKdmps786x9o49yhxrgnujeoiav foreign key (account_account_id) references account
+1718801073057|1|statement|alter table if exists board_game_event_board_games add constraint FKi9tuaqsnskyul53gwjf7ajjxl foreign key (board_game_event_board_game_event_id) references board_game_event
+1718801073058|1|statement|alter table if exists comment add constraint FKopnr8afyrggpnjxhx0u99m20q foreign key (sender_id) references account
+1718801073059|0|statement|alter table if exists comment add constraint FKuyejbcvujay8hcguf0ueavl8 foreign key (target_id) references account
+1718801073061|1|statement|alter table if exists event add constraint FKnecpekdvfo3ndygsii3wl3meu foreign key (address) references address
+1718801073062|0|statement|alter table if exists event add constraint FKcj3kw078e6io5g5yu50rvlvlj foreign key (organize) references account
+1718801073063|0|statement|alter table if exists event_demands add constraint FKqc53iv4949k1hnov3eba3wdkv foreign key (event_id) references event
+1718801073064|0|statement|alter table if exists event_participants add constraint FKhk2mb30bhcpv9qraph8sdvylb foreign key (account_id) references account
+1718801073065|0|statement|alter table if exists event_participants add constraint FK5232w1ta0icpkemgsxyw8a976 foreign key (event_id) references event
+1718801073066|0|statement|alter table if exists event_requirements add constraint FKb3bnmteaa3w99fdkepdt17iu3 foreign key (event_event_id) references event
+1718801073067|1|statement|alter table if exists lan_event_video_games add constraint FKol4ggak7evrsd46ungt225qan foreign key (lan_event_lan_event_id) references lan_event
+1718801073069|1|statement|alter table if exists party_event_music_type add constraint FKov7wjp62hswr8hfsr6shkkvo6 foreign key (party_event_party_event_id) references party_event
+1718801918530|6|statement|select * from information_schema.sequences
+1718801918555|2|statement|alter table if exists account add column address bigint
+1718801918556|0|statement|alter table if exists comment add column sender bigint
+1718801918557|0|statement|alter table if exists comment add column target bigint
+1718801918572|1|statement|alter table if exists account drop constraint if exists UK_sa3ur84gbq08s7gjbdo9irci1
+1718801918576|3|statement|alter table if exists account add constraint UK_sa3ur84gbq08s7gjbdo9irci1 unique (address)
+1718801918598|0|statement|select * from "public"."address" where 1=0
+1718801918608|3|statement|alter table if exists account add constraint FK6vu7ra4kvrq5nsqq9bclb9ods foreign key (address) references address
+1718801918618|0|statement|select * from "public"."account" where 1=0
+1718801918630|0|statement|select * from "public"."board_game_event" where 1=0
+1718801918641|0|statement|select * from "public"."account" where 1=0
+1718801918642|0|statement|select * from "public"."account" where 1=0
+1718801918644|1|statement|alter table if exists comment add constraint FKddwcdp3p5kbn0tu4weld9muu foreign key (sender) references account
+1718801918645|0|statement|alter table if exists comment add constraint FKjsnehp6m8jh0yqekg0koi670c foreign key (target) references account
+1718801918654|0|statement|select * from "public"."account" where 1=0
+1718801918656|0|statement|select * from "public"."address" where 1=0
+1718801918665|1|statement|select * from "public"."event" where 1=0
+1718801918675|1|statement|select * from "public"."account" where 1=0
+1718801918677|0|statement|select * from "public"."event" where 1=0
+1718801918686|0|statement|select * from "public"."event" where 1=0
+1718801918694|0|statement|select * from "public"."lan_event" where 1=0
+1718801918703|0|statement|select * from "public"."party_event" where 1=0
+1718804541118|7|statement|select * from information_schema.sequences
+1718804541162|1|statement|select * from "public"."address" where 1=0
+1718804541167|0|statement|select * from "public"."address" where 1=0
+1718804541176|2|statement|select * from "public"."account" where 1=0
+1718804541187|0|statement|select * from "public"."board_game_event" where 1=0
+1718804541196|0|statement|select * from "public"."account" where 1=0
+1718804541198|0|statement|select * from "public"."account" where 1=0
+1718804541199|0|statement|select * from "public"."account" where 1=0
+1718804541201|1|statement|select * from "public"."account" where 1=0
+1718804541209|0|statement|select * from "public"."account" where 1=0
+1718804541210|0|statement|select * from "public"."address" where 1=0
+1718804541219|1|statement|select * from "public"."event" where 1=0
+1718804541228|0|statement|select * from "public"."account" where 1=0
+1718804541229|0|statement|select * from "public"."event" where 1=0
+1718804541235|0|statement|select * from "public"."event" where 1=0
+1718804541243|0|statement|select * from "public"."lan_event" where 1=0
+1718804541252|1|statement|select * from "public"."party_event" where 1=0
+1718804612669|5|statement|select * from information_schema.sequences
+1718804612701|0|statement|select * from "public"."address" where 1=0
+1718804612705|0|statement|select * from "public"."address" where 1=0
+1718804612715|1|statement|select * from "public"."account" where 1=0
+1718804612725|0|statement|select * from "public"."board_game_event" where 1=0
+1718804612733|0|statement|select * from "public"."account" where 1=0
+1718804612735|0|statement|select * from "public"."account" where 1=0
+1718804612736|0|statement|select * from "public"."account" where 1=0
+1718804612738|0|statement|select * from "public"."account" where 1=0
+1718804612747|0|statement|select * from "public"."account" where 1=0
+1718804612748|0|statement|select * from "public"."address" where 1=0
+1718804612757|0|statement|select * from "public"."event" where 1=0
+1718804612766|0|statement|select * from "public"."account" where 1=0
+1718804612768|0|statement|select * from "public"."event" where 1=0
+1718804612775|0|statement|select * from "public"."event" where 1=0
+1718804612782|0|statement|select * from "public"."lan_event" where 1=0
+1718804612791|0|statement|select * from "public"."party_event" where 1=0
+1718804647514|5|statement|select * from information_schema.sequences
+1718804647547|0|statement|select * from "public"."address" where 1=0
+1718804647552|0|statement|select * from "public"."address" where 1=0
+1718804647562|1|statement|select * from "public"."account" where 1=0
+1718804647573|0|statement|select * from "public"."board_game_event" where 1=0
+1718804647584|0|statement|select * from "public"."account" where 1=0
+1718804647586|0|statement|select * from "public"."account" where 1=0
+1718804647587|0|statement|select * from "public"."account" where 1=0
+1718804647589|0|statement|select * from "public"."account" where 1=0
+1718804647597|0|statement|select * from "public"."account" where 1=0
+1718804647599|0|statement|select * from "public"."address" where 1=0
+1718804647610|1|statement|select * from "public"."event" where 1=0
+1718804647622|0|statement|select * from "public"."account" where 1=0
+1718804647623|0|statement|select * from "public"."event" where 1=0
+1718804647633|0|statement|select * from "public"."event" where 1=0
+1718804647644|0|statement|select * from "public"."lan_event" where 1=0
+1718804647656|1|statement|select * from "public"."party_event" where 1=0
+1718871066580|31|statement|select * from information_schema.sequences
+1718871066641|20|statement|create table demand (id bigserial not null, is_accepted boolean, event bigint, account bigint, primary key (id))
+1718871066644|1|statement|alter table if exists event add column event_type_id bigint
+1718871066645|0|statement|alter table if exists event add column organizer bigint
+1718871066677|2|statement|select * from "public"."address" where 1=0
+1718871066684|0|statement|select * from "public"."address" where 1=0
+1718871066697|3|statement|select * from "public"."account" where 1=0
+1718871066709|1|statement|select * from "public"."board_game_event" where 1=0
+1718871066720|0|statement|select * from "public"."account" where 1=0
+1718871066722|0|statement|select * from "public"."account" where 1=0
+1718871066724|0|statement|select * from "public"."account" where 1=0
+1718871066726|0|statement|select * from "public"."account" where 1=0
+1718871066737|10|statement|alter table if exists demand add constraint FKfkdl28tnwhqbi9999f5a43qqk foreign key (event) references event
+1718871066740|3|statement|alter table if exists demand add constraint FK6g2g4f4u4tljlluh82b9aioek foreign key (account) references account
+1718871066751|0|statement|select * from "public"."account" where 1=0
+1718871066752|0|statement|select * from "public"."address" where 1=0
+1718871066754|1|statement|alter table if exists event add constraint FKg2lve37unemw2dcuqp4s6gso1 foreign key (organizer) references account
+1718871066762|0|statement|select * from "public"."account" where 1=0
+1718871066765|0|statement|select * from "public"."event" where 1=0
+1718871066776|0|statement|select * from "public"."event" where 1=0
+1718871066785|1|statement|select * from "public"."lan_event" where 1=0
+1718871066794|1|statement|select * from "public"."party_event" where 1=0
+1718871249842|29|statement|select * from information_schema.sequences
+1718871249909|1|statement|select * from "public"."address" where 1=0
+1718871249915|0|statement|select * from "public"."address" where 1=0
+1718871249932|3|statement|select * from "public"."account" where 1=0
+1718871249944|1|statement|select * from "public"."board_game_event" where 1=0
+1718871249956|0|statement|select * from "public"."account" where 1=0
+1718871249958|0|statement|select * from "public"."account" where 1=0
+1718871249959|0|statement|select * from "public"."account" where 1=0
+1718871249962|0|statement|select * from "public"."account" where 1=0
+1718871249971|0|statement|select * from "public"."account" where 1=0
+1718871249974|1|statement|select * from "public"."event" where 1=0
+1718871249987|0|statement|select * from "public"."account" where 1=0
+1718871249989|0|statement|select * from "public"."account" where 1=0
+1718871249991|0|statement|select * from "public"."address" where 1=0
+1718871250001|0|statement|select * from "public"."account" where 1=0
+1718871250003|0|statement|select * from "public"."event" where 1=0
+1718871250014|0|statement|select * from "public"."event" where 1=0
+1718871250024|1|statement|select * from "public"."lan_event" where 1=0
+1718871250036|1|statement|select * from "public"."party_event" where 1=0
+1718871353621|10|statement|select * from information_schema.sequences
+1718871353684|2|statement|select * from "public"."address" where 1=0
+1718871353690|0|statement|select * from "public"."address" where 1=0
+1718871353701|1|statement|select * from "public"."account" where 1=0
+1718871353713|1|statement|select * from "public"."board_game_event" where 1=0
+1718871353725|0|statement|select * from "public"."account" where 1=0
+1718871353727|0|statement|select * from "public"."account" where 1=0
+1718871353729|0|statement|select * from "public"."account" where 1=0
+1718871353731|0|statement|select * from "public"."account" where 1=0
+1718871353741|0|statement|select * from "public"."account" where 1=0
+1718871353744|1|statement|select * from "public"."event" where 1=0
+1718871353756|0|statement|select * from "public"."account" where 1=0
+1718871353758|0|statement|select * from "public"."account" where 1=0
+1718871353759|0|statement|select * from "public"."address" where 1=0
+1718871353769|0|statement|select * from "public"."account" where 1=0
+1718871353771|0|statement|select * from "public"."event" where 1=0
+1718871353780|0|statement|select * from "public"."event" where 1=0
+1718871353789|0|statement|select * from "public"."lan_event" where 1=0
+1718871353801|1|statement|select * from "public"."party_event" where 1=0
+1718871425361|8|statement|select * from information_schema.sequences
+1718871425416|0|statement|select * from "public"."address" where 1=0
+1718871425423|0|statement|select * from "public"."address" where 1=0
+1718871425438|2|statement|select * from "public"."account" where 1=0
+1718871425451|1|statement|select * from "public"."board_game_event" where 1=0
+1718871425463|0|statement|select * from "public"."account" where 1=0
+1718871425465|0|statement|select * from "public"."account" where 1=0
+1718871425467|0|statement|select * from "public"."account" where 1=0
+1718871425470|0|statement|select * from "public"."account" where 1=0
+1718871425480|0|statement|select * from "public"."account" where 1=0
+1718871425483|1|statement|select * from "public"."event" where 1=0
+1718871425495|0|statement|select * from "public"."account" where 1=0
+1718871425497|0|statement|select * from "public"."account" where 1=0
+1718871425499|0|statement|select * from "public"."address" where 1=0
+1718871425508|0|statement|select * from "public"."account" where 1=0
+1718871425510|0|statement|select * from "public"."event" where 1=0
+1718871425520|0|statement|select * from "public"."event" where 1=0
+1718871425530|1|statement|select * from "public"."lan_event" where 1=0
+1718871425542|1|statement|select * from "public"."party_event" where 1=0
+1718871452208|12|statement|select * from information_schema.sequences
+1718871452284|1|statement|select * from "public"."address" where 1=0
+1718871452292|0|statement|select * from "public"."address" where 1=0
+1718871452311|3|statement|select * from "public"."account" where 1=0
+1718871452329|1|statement|select * from "public"."board_game_event" where 1=0
+1718871452347|0|statement|select * from "public"."account" where 1=0
+1718871452349|0|statement|select * from "public"."account" where 1=0
+1718871452353|0|statement|select * from "public"."account" where 1=0
+1718871452355|0|statement|select * from "public"."account" where 1=0
+1718871452370|0|statement|select * from "public"."account" where 1=0
+1718871452374|2|statement|select * from "public"."event" where 1=0
+1718871452393|0|statement|select * from "public"."account" where 1=0
+1718871452395|0|statement|select * from "public"."account" where 1=0
+1718871452397|0|statement|select * from "public"."address" where 1=0
+1718871452410|0|statement|select * from "public"."account" where 1=0
+1718871452413|0|statement|select * from "public"."event" where 1=0
+1718871452426|0|statement|select * from "public"."event" where 1=0
+1718871452442|1|statement|select * from "public"."lan_event" where 1=0
+1718871452460|1|statement|select * from "public"."party_event" where 1=0
+1718871497121|13|statement|select * from information_schema.sequences
+1718871497193|1|statement|select * from "public"."address" where 1=0
+1718871497203|0|statement|select * from "public"."address" where 1=0
+1718871497227|3|statement|select * from "public"."account" where 1=0
+1718871497247|1|statement|select * from "public"."board_game_event" where 1=0
+1718871497267|0|statement|select * from "public"."account" where 1=0
+1718871497270|0|statement|select * from "public"."account" where 1=0
+1718871497273|0|statement|select * from "public"."account" where 1=0
+1718871497277|0|statement|select * from "public"."account" where 1=0
+1718871497291|0|statement|select * from "public"."account" where 1=0
+1718871497297|2|statement|select * from "public"."event" where 1=0
+1718871497314|0|statement|select * from "public"."account" where 1=0
+1718871497317|0|statement|select * from "public"."account" where 1=0
+1718871497320|0|statement|select * from "public"."address" where 1=0
+1718871497333|0|statement|select * from "public"."account" where 1=0
+1718871497335|0|statement|select * from "public"."event" where 1=0
+1718871497349|0|statement|select * from "public"."event" where 1=0
+1718871497366|1|statement|select * from "public"."lan_event" where 1=0
+1718871497383|1|statement|select * from "public"."party_event" where 1=0
+1718871652481|8|statement|select * from information_schema.sequences
+1718871652524|1|statement|select * from "public"."address" where 1=0
+1718871652530|0|statement|select * from "public"."address" where 1=0
+1718871652547|2|statement|select * from "public"."account" where 1=0
+1718871652560|1|statement|select * from "public"."board_game_event" where 1=0
+1718871652571|0|statement|select * from "public"."account" where 1=0
+1718871652573|0|statement|select * from "public"."account" where 1=0
+1718871652575|0|statement|select * from "public"."account" where 1=0
+1718871652577|0|statement|select * from "public"."account" where 1=0
+1718871652587|0|statement|select * from "public"."account" where 1=0
+1718871652590|1|statement|select * from "public"."event" where 1=0
+1718871652601|0|statement|select * from "public"."account" where 1=0
+1718871652602|0|statement|select * from "public"."account" where 1=0
+1718871652604|0|statement|select * from "public"."address" where 1=0
+1718871652613|0|statement|select * from "public"."account" where 1=0
+1718871652615|0|statement|select * from "public"."event" where 1=0
+1718871652624|0|statement|select * from "public"."event" where 1=0
+1718871652636|1|statement|select * from "public"."lan_event" where 1=0
+1718871652651|1|statement|select * from "public"."party_event" where 1=0
+1718872058668|8|statement|select * from information_schema.sequences
+1718872058704|7|statement|alter table if exists demand add column event_id bigint
+1718872058731|0|statement|select * from "public"."address" where 1=0
+1718872058737|0|statement|select * from "public"."address" where 1=0
+1718872058750|2|statement|select * from "public"."account" where 1=0
+1718872058761|0|statement|select * from "public"."board_game_event" where 1=0
+1718872058772|0|statement|select * from "public"."account" where 1=0
+1718872058774|0|statement|select * from "public"."account" where 1=0
+1718872058777|0|statement|select * from "public"."account" where 1=0
+1718872058779|0|statement|select * from "public"."account" where 1=0
+1718872058789|0|statement|select * from "public"."account" where 1=0
+1718872058792|1|statement|select * from "public"."event" where 1=0
+1718872058808|13|statement|alter table if exists demand add constraint FK7j4oqnft1v4g9cb7tdn0er1ff foreign key (event_id) references event
+1718872058816|0|statement|select * from "public"."account" where 1=0
+1718872058817|0|statement|select * from "public"."account" where 1=0
+1718872058819|0|statement|select * from "public"."address" where 1=0
+1718872058827|0|statement|select * from "public"."account" where 1=0
+1718872058829|0|statement|select * from "public"."event" where 1=0
+1718872058837|0|statement|select * from "public"."event" where 1=0
+1718872058845|0|statement|select * from "public"."lan_event" where 1=0
+1718872058857|1|statement|select * from "public"."party_event" where 1=0
+1718872124376|8|statement|select * from information_schema.sequences
+1718872124421|1|statement|select * from "public"."address" where 1=0
+1718872124427|0|statement|select * from "public"."address" where 1=0
+1718872124442|2|statement|select * from "public"."account" where 1=0
+1718872124454|1|statement|select * from "public"."board_game_event" where 1=0
+1718872124465|0|statement|select * from "public"."account" where 1=0
+1718872124467|0|statement|select * from "public"."account" where 1=0
+1718872124469|0|statement|select * from "public"."account" where 1=0
+1718872124471|0|statement|select * from "public"."account" where 1=0
+1718872124481|0|statement|select * from "public"."account" where 1=0
+1718872124484|1|statement|select * from "public"."event" where 1=0
+1718872124488|0|statement|select * from "public"."event" where 1=0
+1718872124498|0|statement|select * from "public"."account" where 1=0
+1718872124500|0|statement|select * from "public"."account" where 1=0
+1718872124502|0|statement|select * from "public"."address" where 1=0
+1718872124510|0|statement|select * from "public"."account" where 1=0
+1718872124511|0|statement|select * from "public"."event" where 1=0
+1718872124520|0|statement|select * from "public"."event" where 1=0
+1718872124529|1|statement|select * from "public"."lan_event" where 1=0
+1718872124542|1|statement|select * from "public"."party_event" where 1=0
+1718872159804|6|statement|select * from information_schema.sequences
+1718872159850|0|statement|select * from "public"."address" where 1=0
+1718872159856|0|statement|select * from "public"."address" where 1=0
+1718872159867|1|statement|select * from "public"."account" where 1=0
+1718872159879|1|statement|select * from "public"."board_game_event" where 1=0
+1718872159890|0|statement|select * from "public"."account" where 1=0
+1718872159892|0|statement|select * from "public"."account" where 1=0
+1718872159894|0|statement|select * from "public"."account" where 1=0
+1718872159896|0|statement|select * from "public"."account" where 1=0
+1718872159906|0|statement|select * from "public"."account" where 1=0
+1718872159909|1|statement|select * from "public"."event" where 1=0
+1718872159914|0|statement|select * from "public"."event" where 1=0
+1718872159923|0|statement|select * from "public"."account" where 1=0
+1718872159925|0|statement|select * from "public"."account" where 1=0
+1718872159926|0|statement|select * from "public"."address" where 1=0
+1718872159935|0|statement|select * from "public"."account" where 1=0
+1718872159936|0|statement|select * from "public"."event" where 1=0
+1718872159945|0|statement|select * from "public"."event" where 1=0
+1718872159954|1|statement|select * from "public"."lan_event" where 1=0
+1718872159966|1|statement|select * from "public"."party_event" where 1=0
+1718874498255|0|rollback|
+1718874517530|0|rollback|
+1718874562377|0|rollback|
+1718874582273|20|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (NULL,true,0,'2024-06-20T10:55:11.868+0200','description','LAN_EVENT',0,'string',NULL,0.0)
+1718874582288|1|rollback|
+1718874616674|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (NULL,true,0,'2024-06-20T10:55:11.868+0200','description','LAN_EVENT',0,'string',NULL,0.0)
+1718874616698|23|statement|insert into demand (event_id,is_accepted,account) values (0,true,NULL)
+1718874616706|0|rollback|
+1718874645794|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (NULL,true,0,'2024-06-20T10:55:11.868+0200','description','LAN_EVENT',NULL,'string',NULL,0.0)
+1718874645798|2|statement|insert into demand (event_id,is_accepted,account) values (NULL,true,NULL)
+1718874645805|0|rollback|
+1718874697411|0|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (NULL,true,0,'2024-06-20T10:55:11.868+0200','description','LAN_EVENT',NULL,'string',NULL,0.0)
+1718874697413|0|rollback|
+1718874721089|1|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (NULL,true,0,'2024-06-20T10:55:11.868+0200','description','LAN_EVENT',NULL,'string',NULL,0.0)
+1718874721121|2|statement|insert into event_requirements (event_event_id,requirements) values (5,'string')
+1718874721125|1|commit|
+1718874729957|0|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0
+1718874729968|0|commit|
+1718874729977|2|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=5
+1718874729978|0|statement|select d1_0.event_id,d1_0.id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=5
+1718874729979|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=5
+1718875426709|0|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 where e1_0.event_id=5
+1718875426710|0|commit|
+1718875426711|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=5
+1718875426712|0|statement|select d1_0.event_id,d1_0.id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=5
+1718875426713|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=5
+1718875932659|3|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 where e1_0.event_id=5
+1718875932661|0|commit|
+1718875932664|2|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=5
+1718875932665|0|statement|select d1_0.event_id,d1_0.id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=5
+1718875932666|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=5

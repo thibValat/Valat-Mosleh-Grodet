@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Table(name = "event")
@@ -24,8 +24,11 @@ public class Event {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organize")
+    @JoinColumn(name = "organizer")
     private Account organizer;
+
+    @Column(name = "event_type_id")
+    private Long eventTypeId;
 
     @Column(name = "event_type")
     @Enumerated(EnumType.STRING)
@@ -53,11 +56,8 @@ public class Event {
     @Column(name = "price")
     private Float price;
 
-    @ElementCollection
-    @CollectionTable(name = "event_demands",
-            joinColumns = @JoinColumn(name = "event_id"))
-    @Column(name = "is_accepted")
-    private List<Boolean> demands;
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Demand> demands = new ArrayList<>();
 
     @ElementCollection
     @Column(name = "requirements")

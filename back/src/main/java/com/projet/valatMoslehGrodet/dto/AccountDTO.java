@@ -15,7 +15,6 @@ public class AccountDTO {
     private String password;
     private String email;
     private AddressDTO address;
-    private String postCode;
     private Date birthDate;
     private List<String> preferences;
     private Float rating;
