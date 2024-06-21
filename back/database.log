@@ -1184,3 +1184,47 @@
 1718975843186|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=3
 1718975843187|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=4
 1718975843188|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=4
+1718976740990|9|statement|select * from information_schema.sequences
+1718976741045|1|statement|select * from "public"."address" where 1=0
+1718976741062|2|statement|select * from "public"."account" where 1=0
+1718976741076|0|statement|select * from "public"."board_game_event" where 1=0
+1718976741087|0|statement|select * from "public"."account" where 1=0
+1718976741089|0|statement|select * from "public"."account" where 1=0
+1718976741099|0|statement|select * from "public"."account" where 1=0
+1718976741104|1|statement|select * from "public"."event" where 1=0
+1718976741115|0|statement|select * from "public"."account" where 1=0
+1718976741117|0|statement|select * from "public"."address" where 1=0
+1718976741127|0|statement|select * from "public"."account" where 1=0
+1718976741129|0|statement|select * from "public"."event" where 1=0
+1718976741138|0|statement|select * from "public"."event" where 1=0
+1718976741149|1|statement|select * from "public"."lan_event" where 1=0
+1718976741160|0|statement|select * from "public"."party_event" where 1=0
+1718976747211|1|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 where e1_0.event_id=1
+1718976747229|0|commit|
+1718976747232|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=1
+1718976747238|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=1
+1718976747241|1|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=1
+1718976747241|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=1
+1718976747242|0|statement|select bge1_0.board_game_event_id,bge1_0.bring_your_own from board_game_event bge1_0 where bge1_0.board_game_event_id=1
+1718976747243|0|commit|
+1718976747321|2|statement|select bg1_0.board_game_event_board_game_event_id,bg1_0.board_games from board_game_event_board_games bg1_0 where bg1_0.board_game_event_board_game_event_id=1
+1718978033242|1|statement|insert into lan_event (bring_your_own,console) values (true,NULL)
+1718978033252|2|commit|
+1718978033254|0|statement|insert into address (city,post_code,street_name,street_number) values ('paris','22E482Efzf','zfzfzf','2222')
+1718978033257|1|statement|insert into event (address,alcool_allowed,capacity,date,description,event_type,event_type_id,name,organizer,price) values (5,true,0,'2024-06-20T14:44:49.160+0200','string','LAN_EVENT',2,'string',NULL,0.0)
+1718978033265|0|commit|
+1718978276186|6|statement|select * from information_schema.sequences
+1718978276230|0|statement|select * from "public"."address" where 1=0
+1718978276245|1|statement|select * from "public"."account" where 1=0
+1718978276256|0|statement|select * from "public"."board_game_event" where 1=0
+1718978276266|0|statement|select * from "public"."account" where 1=0
+1718978276268|0|statement|select * from "public"."account" where 1=0
+1718978276276|0|statement|select * from "public"."account" where 1=0
+1718978276278|1|statement|select * from "public"."event" where 1=0
+1718978276287|0|statement|select * from "public"."account" where 1=0
+1718978276289|0|statement|select * from "public"."address" where 1=0
+1718978276296|0|statement|select * from "public"."account" where 1=0
+1718978276298|0|statement|select * from "public"."event" where 1=0
+1718978276305|0|statement|select * from "public"."event" where 1=0
+1718978276314|1|statement|select * from "public"."lan_event" where 1=0
+1718978276323|0|statement|select * from "public"."party_event" where 1=0

@@ -36,7 +36,7 @@ public class EventService {
         if (event.getEventType() == EventType.LAN_EVENT) {
             LanEvent lanEvent = new LanEvent();
             lanEvent.setBringYourOwn((Boolean) eventDTO.getAdditionalProperty("bringYourOwn"));
-            lanEvent.setConsole((ConsoleType) eventDTO.getAdditionalProperty("console"));
+            lanEvent.setConsole(ConsoleType.valueOf((String) eventDTO.getAdditionalProperty("console")));
             lanEvent.setVideoGames((List<String>) eventDTO.getAdditionalProperty("videoGames"));
             lanEvent = lanEventRepository.save(lanEvent);
             event.setEventTypeId(lanEvent.getId());
@@ -120,6 +120,26 @@ public class EventService {
             }
             if (Objects.nonNull(event.getAlcoolAllowed())) {
                 existingEvent.setAlcoolAllowed(event.getAlcoolAllowed());
+            }
+
+            if (event.getEventType() == EventType.LAN_EVENT) {
+                LanEvent lanEvent = new LanEvent();
+                lanEvent.setBringYourOwn((Boolean) eventDTO.getAdditionalProperty("bringYourOwn"));
+                lanEvent.setConsole((ConsoleType) eventDTO.getAdditionalProperty("console"));
+                lanEvent.setVideoGames((List<String>) eventDTO.getAdditionalProperty("videoGames"));
+                lanEvent = lanEventRepository.save(lanEvent);
+                existingEvent.setEventTypeId(lanEvent.getId());
+            } else if (event.getEventType() == EventType.BOARD_GAME_EVENT) {
+                BoardGameEvent boardGameEvent = new BoardGameEvent();
+                boardGameEvent.setBringYourOwn((Boolean) eventDTO.getAdditionalProperty("bringYourOwn"));
+                boardGameEvent.setBoardGames((List<String>) eventDTO.getAdditionalProperty("boardGames"));
+                boardGameEvent = boardGameEventRepository.save(boardGameEvent);
+                existingEvent.setEventTypeId(boardGameEvent.getId());
+            } else if (event.getEventType() == EventType.PARTY_EVENT) {
+                PartyEvent partyEvent = new PartyEvent();
+                partyEvent.setMusicType((List<String>) eventDTO.getAdditionalProperty("musicType"));
+                partyEvent = partyEventRepository.save(partyEvent);
+                existingEvent.setEventTypeId(partyEvent.getId());
             }
 
             return eventMapper.toDTO(eventRepository.save(existingEvent));
