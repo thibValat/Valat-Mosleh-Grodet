@@ -2,6 +2,7 @@ package com.projet.valatMoslehGrodet.controller;
 
 import com.projet.valatMoslehGrodet.dto.AccountCreationDTO;
 import com.projet.valatMoslehGrodet.dto.AccountDTO;
+import com.projet.valatMoslehGrodet.dto.AccountSignInDTO;
 import com.projet.valatMoslehGrodet.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,12 @@ public class AccountController {
     @PostMapping("/inscription")
     public ResponseEntity<AccountDTO> save(@RequestBody AccountCreationDTO accountCreationDto) {
         return ResponseEntity.ok(accountService.createAccount(accountCreationDto));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Object> signIn(@RequestBody AccountSignInDTO accountSignInDTO){
+        return ResponseEntity.ok(accountService.logInAccount(accountSignInDTO));
+
     }
 
 }

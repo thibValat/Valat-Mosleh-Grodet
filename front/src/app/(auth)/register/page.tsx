@@ -52,8 +52,7 @@ export default function Register() {
     resolver: zodResolver(RegisterSchema),
   });
 
-  const onSubmit = async (data: z.infer<typeof RegisterSchema>) => {
-    console.log(data);
+const onSubmit = async (data: z.infer<typeof RegisterSchema>) => {
     const postData = {
       ...data,
       confirmPassword: undefined,

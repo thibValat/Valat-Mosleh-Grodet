@@ -1,11 +1,9 @@
 package com.projet.valatMoslehGrodet.configuration;
 
-import com.projet.valatMoslehGrodet.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,8 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig {
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
 
 
     @Bean
@@ -28,20 +24,13 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()
                 )
-                .formLogin(Customizer.withDefaults());
+                .httpBasic(httpBasic -> {});  // Active l'authentification HTTP Basic
         return http.build();
     }
 
     @Bean
     public BCryptPasswordEncoder defaultPasswordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
-        return authenticationManagerBuilder.build();
     }
 
     @Bean

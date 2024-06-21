@@ -26,9 +26,31 @@ export default function Login() {
     resolver: zodResolver(LoginSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
-    console.log(data);
-  };
+const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
+    const postData = {
+      ...data,
+      email: data.email,
+      password: data.password,
+    };
+  try {
+    const response = await fetch('http://localhost:8081/account/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    });
+
+    if (response.ok) {
+      console.log('Login success');
+      // Redirection ou gestion du state de session ici
+    } else {
+      throw new Error('Failed to login');
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+  }
+};
 
   return (
     <main>
