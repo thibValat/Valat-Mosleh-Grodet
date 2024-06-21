@@ -25,7 +25,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { EventType } from "@/lib/apiUtils";
+import { ConsoleType, EventType } from "@/lib/apiUtils";
 import {
   Select,
   SelectContent,
@@ -222,11 +222,40 @@ export default function CreateEventPage() {
               {form.watch("eventType") === EventType.lan && (
                 <>
                   <div className="grid gap-2">
-                    <FormInput
+                    <FormField
                       control={form.control}
-                      label="Console"
                       name="additionalProperties.console"
-                      InputProps={{ placeholder: "PC" }}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Event Type</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value={ConsoleType.nintendo}>
+                                Nintendo
+                              </SelectItem>
+                              <SelectItem value={ConsoleType.pc}>PC</SelectItem>
+                              <SelectItem value={ConsoleType.play}>
+                                PlayStation
+                              </SelectItem>
+                              <SelectItem value={ConsoleType.xbox}>
+                                Xbox
+                              </SelectItem>
+                              <SelectItem value={ConsoleType.other}>
+                                Other
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
                   </div>
                   <div className="grid gap-2">

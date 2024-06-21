@@ -28,8 +28,10 @@ export default function RootLayout({
           <Navbar
             links={[
               { href: "/", text: "Home" },
-              { href: "/login", text: "Login" },
+              // { href: "/login", text: "Login" },
               { href: "/register", text: "Register" },
+              { href: "/events", text: "Events" },
+              { href: "/events/create", text: "Create Event" },
             ]}
           />
         </ThemeProvider>
