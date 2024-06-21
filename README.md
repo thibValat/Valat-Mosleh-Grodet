@@ -3,6 +3,8 @@
 ## Back :
 
 lancer avec IDEA
+swagger : http://localhost:8081/swagger-ui/index.html
+swagger api : http://localhost:8081/v3/api-docs
 
 ## FRONT :
 
