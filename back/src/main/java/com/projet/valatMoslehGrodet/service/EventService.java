@@ -7,6 +7,8 @@ import com.projet.valatMoslehGrodet.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -108,10 +110,35 @@ public class EventService {
         eventRepository.deleteById(id);
     }
 
-    @Cacheable(value = "events", key = "#city + '-' + #eventType + '-' + #maxParticipants + '-' + #maxPrice + '-' + #date + '-' + #pageable.pageNumber + '-' + #pageable.pageSize")
-    public List<EventDTO> searchEvents(String city, String eventType, Integer maxParticipants, Double maxPrice, String date, Pageable pageable) {
-        List<Event> events = eventRepository.searchEvents(city, eventType, maxParticipants, maxPrice, date, pageable);
-        return events.stream().map(eventMapper::toDTO).collect(Collectors.toList());
+
+    public List<EventDTO> searchEvents(EventSearchCriteria criteria, Pageable pageable) {
+        Event probe = new Event();
+
+        if (criteria.getEventType() != null) {
+            probe.setEventType(criteria.getEventType());
+        }
+        if (criteria.getDate() != null) {
+            probe.setDate(criteria.getDate());
+        }
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+                .withIgnoreCase()
+                .withIgnoreNullValues();
+
+        Example<Event> example = Example.of(probe, matcher);
+
+        List<Event> events = eventRepository.findAll(example, pageable).getContent();
+
+        return events.stream()
+                .filter(event -> criteria.getCity() == null ||
+                        (event.getAddress() != null &&
+                                event.getAddress().getCity() != null &&
+                                event.getAddress().getCity().toLowerCase().contains(criteria.getCity().toLowerCase())))
+                .filter(event -> criteria.getMaxCapacity() == null || event.getCapacity() <= criteria.getMaxCapacity())
+                .filter(event -> criteria.getMaxPrice() == null || event.getPrice() <= criteria.getMaxPrice())
+                .map(eventMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @CacheEvict(value = "events", key = "#eventId")
