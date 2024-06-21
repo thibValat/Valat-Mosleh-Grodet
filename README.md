@@ -8,6 +8,8 @@ swagger : http://localhost:8081/swagger-ui/index.html
 
 swagger api : http://localhost:8081/v3/api-docs
 
+(pour voir toutes les fonctions disponibles car pas toutes implémentées sur le front)
+
 ## FRONT :
 
 ### installation et lancement
