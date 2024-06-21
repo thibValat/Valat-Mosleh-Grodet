@@ -53,16 +53,16 @@ public class AccountService {
         return accountMapper.toDTO(accountToSave);
 
     }
-    public ResponseEntity<Object> logInAccount(AccountSignInDTO accountSignInDTO){
+    public AccountDTO logInAccount(AccountSignInDTO accountSignInDTO){
             Account account = accountRepository.findByEmail(accountSignInDTO.getEmail());
             if (account != null) {
                 if (passwordEncoder.matches(accountSignInDTO.getPassword(), account.getPassword())) {
-                    return ResponseEntity.ok().body("Login successful");
+                    return accountMapper.toDTO(account);
                 } else {
-                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid password");
+                    return null;
                 }
             } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+                return null;
             }
     }
     @CacheEvict(value = "accountDetails", allEntries = true)

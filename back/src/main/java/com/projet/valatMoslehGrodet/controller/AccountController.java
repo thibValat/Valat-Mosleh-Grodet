@@ -39,7 +39,7 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> signIn(@RequestBody AccountSignInDTO accountSignInDTO){
+    public ResponseEntity<AccountDTO> signIn(@RequestBody AccountSignInDTO accountSignInDTO){
         return ResponseEntity.ok(accountService.logInAccount(accountSignInDTO));
 
     }
