@@ -1,15 +1,14 @@
 package com.projet.valatMoslehGrodet.service;
 
 import com.projet.valatMoslehGrodet.dto.EventDTO;
-import com.projet.valatMoslehGrodet.entity.Account;
-import com.projet.valatMoslehGrodet.entity.Event;
-import com.projet.valatMoslehGrodet.entity.PartyEvent;
+import com.projet.valatMoslehGrodet.entity.*;
 import com.projet.valatMoslehGrodet.mapper.EventMapper;
-import com.projet.valatMoslehGrodet.repository.AccountRepository;
-import com.projet.valatMoslehGrodet.repository.EventRepository;
+import com.projet.valatMoslehGrodet.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +23,35 @@ public class EventService {
     private EventMapper eventMapper;
 
     private AccountRepository accountRepository;
+    private LanEventRepository lanEventRepository;
+    private BoardGameEventRepository boardGameEventRepository;
+    private PartyEventRepository partyEventRepository;
 
 
     @CacheEvict(value = "events", allEntries = true)
     public EventDTO createEvent(EventDTO eventDTO) {
         Event event = eventMapper.toEntity(eventDTO);
+
+        if (event.getEventType() == EventType.LAN_EVENT) {
+            LanEvent lanEvent = new LanEvent();
+            lanEvent.setBringYourOwn((Boolean) eventDTO.getAdditionalProperty("bringYourOwn"));
+            lanEvent.setConsole((ConsoleType) eventDTO.getAdditionalProperty("console"));
+            lanEvent.setVideoGames((List<String>) eventDTO.getAdditionalProperty("videoGames"));
+            lanEvent = lanEventRepository.save(lanEvent);
+            event.setEventTypeId(lanEvent.getId());
+        } else if (event.getEventType() == EventType.BOARD_GAME_EVENT) {
+            BoardGameEvent boardGameEvent = new BoardGameEvent();
+            boardGameEvent.setBringYourOwn((Boolean) eventDTO.getAdditionalProperty("bringYourOwn"));
+            boardGameEvent.setBoardGames((List<String>) eventDTO.getAdditionalProperty("boardGames"));
+            boardGameEvent = boardGameEventRepository.save(boardGameEvent);
+            event.setEventTypeId(boardGameEvent.getId());
+        } else if (event.getEventType() == EventType.PARTY_EVENT) {
+            PartyEvent partyEvent = new PartyEvent();
+            partyEvent.setMusicType((List<String>) eventDTO.getAdditionalProperty("musicType"));
+            partyEvent = partyEventRepository.save(partyEvent);
+            event.setEventTypeId(partyEvent.getId());
+        }
+
         Event savedEvent = eventRepository.save(event);
         return eventMapper.toDTO(savedEvent);
     }
@@ -87,10 +110,35 @@ public class EventService {
         eventRepository.deleteById(id);
     }
 
-    @Cacheable(value = "events", key = "#city + '-' + #eventType + '-' + #maxParticipants + '-' + #maxPrice + '-' + #date + '-' + #pageable.pageNumber + '-' + #pageable.pageSize")
-    public List<EventDTO> searchEvents(String city, String eventType, Integer maxParticipants, Double maxPrice, String date, Pageable pageable) {
-        List<Event> events = eventRepository.searchEvents(city, eventType, maxParticipants, maxPrice, date, pageable);
-        return events.stream().map(eventMapper::toDTO).collect(Collectors.toList());
+
+    public List<EventDTO> searchEvents(EventSearchCriteria criteria, Pageable pageable) {
+        Event probe = new Event();
+
+        if (criteria.getEventType() != null) {
+            probe.setEventType(criteria.getEventType());
+        }
+        if (criteria.getDate() != null) {
+            probe.setDate(criteria.getDate());
+        }
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+                .withIgnoreCase()
+                .withIgnoreNullValues();
+
+        Example<Event> example = Example.of(probe, matcher);
+
+        List<Event> events = eventRepository.findAll(example, pageable).getContent();
+
+        return events.stream()
+                .filter(event -> criteria.getCity() == null ||
+                        (event.getAddress() != null &&
+                                event.getAddress().getCity() != null &&
+                                event.getAddress().getCity().toLowerCase().contains(criteria.getCity().toLowerCase())))
+                .filter(event -> criteria.getMaxCapacity() == null || event.getCapacity() <= criteria.getMaxCapacity())
+                .filter(event -> criteria.getMaxPrice() == null || event.getPrice() <= criteria.getMaxPrice())
+                .map(eventMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @CacheEvict(value = "events", key = "#eventId")

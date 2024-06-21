@@ -21,7 +21,9 @@ public class AccountDTO {
     private String password;
     @NotNull
     private String email;
+    @NotNull
     private AddressDTO address;
+    @NotNull
     private Date birthDate;
     private List<String> preferences;
     private Float rating;

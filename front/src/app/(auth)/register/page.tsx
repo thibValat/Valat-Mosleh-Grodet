@@ -26,11 +26,11 @@ import {
 import FormInput from "@/components/FormInput";
 
 const AdresseSchema = z.object({
-    city: z.string(),
-    postCode: z.string(),
-    streetName: z.string(),
-    streetNumber: z.string(),
-})
+  city: z.string(),
+  postCode: z.string(),
+  streetName: z.string(),
+  streetNumber: z.string(),
+});
 
 const RegisterSchema = z
   .object({
@@ -41,7 +41,6 @@ const RegisterSchema = z
     confirmPassword: z.string(),
     birthDate: z.date(),
     address: AdresseSchema,
-
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -61,24 +60,27 @@ const onSubmit = async (data: z.infer<typeof RegisterSchema>) => {
     };
 
     try {
-      const response = await fetch('http://localhost:8081/account/inscription', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        "http://localhost:8081/account/inscription",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(postData),
         },
-        body: JSON.stringify(postData),
-      });
+      );
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
 
       const result = await response.json();
-      console.log('Success:', result);
+      console.log("Success:", result);
     } catch (error) {
-      console.error('Error during registration:', error);
+      console.error("Error during registration:", error);
     }
-};
+  };
 
   return (
     <main>

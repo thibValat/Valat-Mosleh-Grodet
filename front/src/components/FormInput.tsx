@@ -16,7 +16,10 @@ type FormInputProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Omit<ComponentProps<typeof FormField<TFieldValues, TName>>, "render"> & {
   label: string;
-  InputProps?: Pick<ComponentProps<typeof Input>, "placeholder" | "type">;
+  InputProps?: Pick<
+    ComponentProps<typeof Input>,
+    "placeholder" | "type" | "className"
+  >;
 };
 
 export default function FormInput<

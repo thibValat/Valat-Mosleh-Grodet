@@ -1,13 +1,19 @@
 package com.projet.valatMoslehGrodet.controller;
 
 import com.projet.valatMoslehGrodet.dto.EventDTO;
+import com.projet.valatMoslehGrodet.entity.EventSearchCriteria;
+import com.projet.valatMoslehGrodet.entity.EventType;
 import com.projet.valatMoslehGrodet.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -50,15 +56,20 @@ public class EventController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<EventDTO>> searchEvents(@RequestParam(required = false) String city,
-                                                       @RequestParam(required = false) String eventType,
-                                                       @RequestParam(required = false) Integer maxParticipants,
-                                                       @RequestParam(required = false) Double maxPrice,
-                                                       @RequestParam(required = false) String date,
-                                                       @RequestParam(defaultValue = "0") int page,
-                                                       @RequestParam(defaultValue = "5") int size) {
-        List<EventDTO> events = eventService.searchEvents(city, eventType, maxParticipants, maxPrice, date, PageRequest.of(page, size));
-        return new ResponseEntity<>(events, HttpStatus.OK);
+    public ResponseEntity<List<EventDTO>> searchEvents(
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) EventType eventType,
+            @RequestParam(required = false) Integer maxCapacity,
+            @RequestParam(required = false) Float maxPrice,
+            @RequestParam(required = false) Date date,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        EventSearchCriteria criteria = new EventSearchCriteria(city, eventType, maxCapacity, maxPrice, date);
+        Pageable pageable = PageRequest.of(page, size);
+
+        List<EventDTO> events = eventService.searchEvents(criteria, pageable);
+        return ResponseEntity.ok(events);
     }
 
     @PostMapping("/{id}/join")

@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer", "format": "int64" },
+    "city": { "type": "string" },
+    "postCode": { "type": "string" },
+    "streetName": { "type": "string" },
+    "streetNumber": { "type": "string" }
+  },
+  "required": ["city", "postCode", "streetName", "streetNumber"],
+  "x-readme-ref-name": "AddressDTO"
+}
