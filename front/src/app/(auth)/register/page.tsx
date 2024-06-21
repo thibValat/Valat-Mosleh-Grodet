@@ -54,7 +54,6 @@ export default function Register() {
   });
 
 const onSubmit = async (data: z.infer<typeof RegisterSchema>) => {
-    console.log(data);
     const postData = {
       ...data,
       confirmPassword: undefined,
