@@ -60,7 +60,21 @@ public class EventService {
     @Cacheable(value = "events", key = "#id")
     public EventDTO getEventById(Long id) {
         Event event = eventRepository.findById(id).orElseThrow(() -> new RuntimeException("Event not found"));
-        return eventMapper.toDTO(event);
+        EventDTO eventDTO = eventMapper.toDTO(event);
+        if (event.getEventType() == EventType.LAN_EVENT) {
+            LanEvent lanEvent = lanEventRepository.findById(event.getEventTypeId()).orElseThrow(() -> new RuntimeException("LanEvent not found"));
+            eventDTO.setAdditionalProperty("bringYourOwn", lanEvent.getBringYourOwn());
+            eventDTO.setAdditionalProperty("console", lanEvent.getConsole());
+            eventDTO.setAdditionalProperty("videoGames", lanEvent.getVideoGames());
+        } else if (event.getEventType() == EventType.BOARD_GAME_EVENT) {
+            BoardGameEvent boardGameEvent = boardGameEventRepository.findById(event.getEventTypeId()).orElseThrow(() -> new RuntimeException("BoardGameEvent not found"));
+            eventDTO.setAdditionalProperty("bringYourOwn", boardGameEvent.getBringYourOwn());
+            eventDTO.setAdditionalProperty("boardGames", boardGameEvent.getBoardGames());
+        } else if (event.getEventType() == EventType.PARTY_EVENT) {
+            PartyEvent partyEvent = partyEventRepository.findById(event.getEventTypeId()).orElseThrow(() -> new RuntimeException("PartyEvent not found"));
+            eventDTO.setAdditionalProperty("musicType", partyEvent.getMusicType());
+        }
+        return eventDTO;
     }
 
     @Cacheable(value = "events", key = "#pageable.pageNumber + '-' + #pageable.pageSize")
