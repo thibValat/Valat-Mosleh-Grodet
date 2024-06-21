@@ -71,9 +71,7 @@ public class AccountService {
     }
 
     @Cacheable(value = "accountsByFullName", key = "{#acc.firstname, #acc.lastName}")
-    public List<AccountDTO> getAccountByFullName(AccountDTO acc){
-        String firstName = acc.getFirstname();
-        String lastName = acc.getLastName();
+    public List<AccountDTO> getAccountByFullName(String firstName, String lastName){
         return accountMapper.toDtos(accountRepository.findByFirstNameAndLastName(firstName,lastName));
     }
 

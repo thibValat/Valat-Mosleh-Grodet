@@ -50,9 +50,9 @@ public class AccountController {
     }
 
     @GetMapping("/findByFullName")
-    public ResponseEntity<List<AccountDTO>> findByFullName(@RequestBody AccountDTO acc)
+    public ResponseEntity<List<AccountDTO>> findByFullName(@RequestParam String firstName, @RequestParam String lastName)
     {
-        return ResponseEntity.ok(accountService.getAccountByFullName(acc));
+        return ResponseEntity.ok(accountService.getAccountByFullName(firstName, lastName));
     }
 
 }
