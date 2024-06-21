@@ -5,11 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
+
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "account")
+@Table(name = "account",indexes = {
+        @Index(name = "idx_account_email", columnList = "email"),
+        @Index(name = "idx_account_firstName_lastName", columnList = "firstName,lastName")
+})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -47,12 +52,14 @@ public class Account {
     private Float rating;
 
     @OneToMany(mappedBy = "target", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @BatchSize(size = 10)
     private List<Comment> comments;
 
     @Column(name = "description")
     private String description;
 
     @ManyToMany(mappedBy = "participants", fetch = FetchType.LAZY)
+    @BatchSize(size = 10)
     private List<Event> events;
 
 }

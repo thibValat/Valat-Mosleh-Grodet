@@ -5,6 +5,9 @@ import com.projet.valatMoslehGrodet.entity.Account;
 import com.projet.valatMoslehGrodet.mapper.AccountMapper;
 import com.projet.valatMoslehGrodet.repository.AccountRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -21,12 +25,25 @@ public class AccountService {
     private final AccountMapper accountMapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    @Cacheable(value = "accounts")
     public List<AccountDTO> getAll(){
         return accountMapper.toDtos(accountRepository.findAll());
     }
+    @Cacheable(value = "accounts", key = "#accountId")
     public AccountDTO getById(Long id){
         return accountMapper.toDTO(accountRepository.findById(id).orElse(null));
     }
+    @CacheEvict(value ="accountDetails", allEntries = true)
+    public AccountDTO update(Long id, AccountDTO accountDTO) {
+        return accountRepository.findById(id)
+                .map(existingAccount -> {
+                    Account account = accountMapper.toEntity(accountDTO);
+                    account.setId(id);
+                    return accountMapper.toDTO(accountRepository.save(account));
+                })
+                .orElse(null);
+    }
+
     public AccountDTO createAccount(AccountCreationDTO accountCreationDTO){
         accountCreationDTO.setPassword(passwordEncoder.encode(accountCreationDTO.getPassword()));
         Account accountToSave = new Account();
@@ -48,5 +65,10 @@ public class AccountService {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
             }
     }
+    @CacheEvict(value = "accountDetails", allEntries = true)
+    public void delete(Long id) {
+        accountRepository.deleteById(id);
+    }
+
 
 }
