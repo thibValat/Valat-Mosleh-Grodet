@@ -33,6 +33,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import FormInputList from "@/components/FormInputList";
 
 export default function CreateEventPage() {
   const form = useForm<z.infer<typeof eventDtoSchema>>({
@@ -40,6 +41,15 @@ export default function CreateEventPage() {
     defaultValues: {
       requirements: [],
       eventType: EventType.party,
+      additionalProperties: {
+        videoGames: [],
+        musicType: [],
+        boardGames: [],
+        bringYourOwn: false,
+      },
+      alcoolAllowed: false,
+      capacity: 5,
+      price: 0,
     },
   });
 
@@ -55,7 +65,7 @@ export default function CreateEventPage() {
 
   return (
     <main>
-      <Card className="mx-auto max-w-[50%]">
+      <Card className="mx-auto my-4 max-w-[50%]">
         <CardHeader>
           <CardTitle className="text-xl">Create an Event</CardTitle>
           <CardDescription>
@@ -208,6 +218,117 @@ export default function CreateEventPage() {
                   />
                 </div>
               </div>
+              <Separator />
+              {form.watch("eventType") === EventType.lan && (
+                <>
+                  <div className="grid gap-2">
+                    <FormInput
+                      control={form.control}
+                      label="Console"
+                      name="additionalProperties.console"
+                      InputProps={{ placeholder: "PC" }}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <FormField
+                      control={form.control}
+                      name="additionalProperties.videoGames"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Video Games</FormLabel>
+                          <FormControl>
+                            <FormInputList
+                              items={field.value ?? []}
+                              onChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <FormField
+                      control={form.control}
+                      name="additionalProperties.bringYourOwn"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel>Bring your own console ?</FormLabel>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </>
+              )}
+              {form.watch("eventType") === EventType.party && (
+                <>
+                  <div className="grid gap-2">
+                    <FormField
+                      control={form.control}
+                      name="additionalProperties.musicType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Music Type</FormLabel>
+                          <FormControl>
+                            <FormInputList
+                              items={field.value ?? []}
+                              onChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </>
+              )}
+              {form.watch("eventType") === EventType.board && (
+                <>
+                  <div className="grid gap-2">
+                    <FormField
+                      control={form.control}
+                      name="additionalProperties.boardGames"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Board Games</FormLabel>
+                          <FormControl>
+                            <FormInputList
+                              items={field.value ?? []}
+                              onChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <FormField
+                      control={form.control}
+                      name="additionalProperties.bringYourOwn"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel>Bring your own board games ?</FormLabel>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </>
+              )}
               <Button type="submit" className="w-full">
                 Create an event
               </Button>
