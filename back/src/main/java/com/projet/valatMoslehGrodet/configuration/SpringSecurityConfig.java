@@ -24,7 +24,7 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()
                 )
-                .httpBasic(httpBasic -> {});  // Active l'authentification HTTP Basic
+                .httpBasic(httpBasic -> {});
         return http.build();
     }
 
@@ -39,7 +39,7 @@ public class SpringSecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000")  // Assure-toi que cette URL correspond à l'URL de ton front-end
+                        .allowedOrigins("http://localhost:3000") 
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .allowCredentials(true);
