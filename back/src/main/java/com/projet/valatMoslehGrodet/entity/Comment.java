@@ -7,7 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "comment", indexes = {
+        @Index(name = "idx_comment_target", columnList = "target")
+})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -1012,3 +1012,108 @@
 1718953197789|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=4
 1718953197790|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=4
 1718953197790|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=4
+1718953361577|12|statement|select * from information_schema.sequences
+1718953361639|1|statement|select * from "public"."address" where 1=0
+1718953361655|1|statement|select * from "public"."account" where 1=0
+1718953361672|1|statement|select * from "public"."board_game_event" where 1=0
+1718953361686|0|statement|select * from "public"."account" where 1=0
+1718953361688|0|statement|select * from "public"."account" where 1=0
+1718953361698|0|statement|select * from "public"."account" where 1=0
+1718953361704|2|statement|select * from "public"."event" where 1=0
+1718953361715|0|statement|select * from "public"."account" where 1=0
+1718953361717|0|statement|select * from "public"."address" where 1=0
+1718953361728|0|statement|select * from "public"."account" where 1=0
+1718953361731|0|statement|select * from "public"."event" where 1=0
+1718953361742|0|statement|select * from "public"."event" where 1=0
+1718953361754|1|statement|select * from "public"."lan_event" where 1=0
+1718953361769|1|statement|select * from "public"."party_event" where 1=0
+1718953365808|1|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 offset 0 rows fetch first 10 rows only
+1718953365831|0|commit|
+1718953365837|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=1
+1718953365843|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=1
+1718953365845|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=1
+1718953365846|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=1
+1718953365846|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=2
+1718953365848|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=2
+1718953365848|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=2
+1718953365849|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=2
+1718953365850|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=3
+1718953365851|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=3
+1718953365852|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=3
+1718953365852|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=3
+1718953365853|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=4
+1718953365853|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=4
+1718953365854|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=4
+1718953365854|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=4
+1718953433147|0|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 offset 0 rows fetch first 10 rows only
+1718953433150|0|commit|
+1718953433152|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=1
+1718953433154|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=1
+1718953433155|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=1
+1718953433156|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=1
+1718953433157|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=2
+1718953433159|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=2
+1718953433160|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=2
+1718953433161|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=2
+1718953433163|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=3
+1718953433164|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=3
+1718953433165|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=3
+1718953433165|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=3
+1718953433167|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=4
+1718953433169|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=4
+1718953433170|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=4
+1718953433170|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=4
+1718953450167|3|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 where e1_0.event_type='LAN_EVENT' offset 0 rows fetch first 10 rows only
+1718953450169|0|commit|
+1718953450170|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=4
+1718953450172|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=4
+1718953450173|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=4
+1718953450176|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=4
+1718953464265|0|statement|select e1_0.event_id,e1_0.address,e1_0.alcool_allowed,e1_0.capacity,e1_0.date,e1_0.description,e1_0.event_type,e1_0.event_type_id,e1_0.name,e1_0.organizer,e1_0.price from event e1_0 where e1_0.event_type='BOARD_GAME_EVENT' offset 0 rows fetch first 10 rows only
+1718953464268|0|commit|
+1718953464269|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=1
+1718953464271|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=1
+1718953464272|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=1
+1718953464272|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=1
+1718953464274|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=2
+1718953464276|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=2
+1718953464277|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=2
+1718953464277|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=2
+1718953464278|0|statement|select a1_0.address_id,a1_0.city,a1_0.post_code,a1_0.street_name,a1_0.street_number from address a1_0 where a1_0.address_id=3
+1718953464279|0|statement|select p1_0.event_id,p1_1.account_id,p1_1.address,p1_1.birth_date,p1_1.description,p1_1.email,p1_1.first_name,p1_1.last_name,p1_1.password,p1_1.rating from event_participants p1_0 join account p1_1 on p1_1.account_id=p1_0.account_id where p1_0.event_id=3
+1718953464280|0|statement|select d1_0.event_id,d1_0.demand_id,d1_0.is_accepted,d1_0.account from demand d1_0 where d1_0.event_id=3
+1718953464281|0|statement|select r1_0.event_event_id,r1_0.requirements from event_requirements r1_0 where r1_0.event_event_id=3
+1718955276306|10|statement|select * from information_schema.sequences
+1718955276370|3|statement|select * from "public"."address" where 1=0
+1718955276404|1|statement|select * from "public"."account" where 1=0
+1718955276418|1|statement|select * from "public"."board_game_event" where 1=0
+1718955276431|0|statement|select * from "public"."account" where 1=0
+1718955276433|0|statement|select * from "public"."account" where 1=0
+1718955276442|0|statement|select * from "public"."account" where 1=0
+1718955276446|1|statement|select * from "public"."event" where 1=0
+1718955276458|0|statement|select * from "public"."account" where 1=0
+1718955276459|0|statement|select * from "public"."address" where 1=0
+1718955276470|0|statement|select * from "public"."account" where 1=0
+1718955276472|0|statement|select * from "public"."event" where 1=0
+1718955276483|0|statement|select * from "public"."event" where 1=0
+1718955276493|1|statement|select * from "public"."lan_event" where 1=0
+1718955276506|1|statement|select * from "public"."party_event" where 1=0
+1718962525519|9|statement|select * from information_schema.sequences
+1718962525557|8|statement|create index idx_account_email on account (email)
+1718962525562|5|statement|create index idx_account_firstName_lastName on account (first_name, last_name)
+1718962525567|2|statement|create index idx_comment_target on comment (target)
+1718962525570|1|statement|create index event_organizer_index on event (organizer)
+1718962525590|0|statement|select * from "public"."address" where 1=0
+1718962525606|2|statement|select * from "public"."account" where 1=0
+1718962525615|0|statement|select * from "public"."board_game_event" where 1=0
+1718962525624|0|statement|select * from "public"."account" where 1=0
+1718962525626|0|statement|select * from "public"."account" where 1=0
+1718962525634|0|statement|select * from "public"."account" where 1=0
+1718962525637|2|statement|select * from "public"."event" where 1=0
+1718962525646|0|statement|select * from "public"."account" where 1=0
+1718962525648|0|statement|select * from "public"."address" where 1=0
+1718962525654|0|statement|select * from "public"."account" where 1=0
+1718962525655|0|statement|select * from "public"."event" where 1=0
+1718962525663|0|statement|select * from "public"."event" where 1=0
+1718962525671|1|statement|select * from "public"."lan_event" where 1=0
+1718962525681|1|statement|select * from "public"."party_event" where 1=0

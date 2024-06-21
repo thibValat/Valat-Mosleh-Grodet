@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +67,12 @@ public class EventService {
     public List<EventDTO> getAllEvents(Pageable pageable) {
         List<Event> events = eventRepository.findAll();
         return events.stream().map(eventMapper::toDTO).collect(Collectors.toList());
+    }
+
+    @Cacheable(value = "events", key = "#pageable.pageNumber + '-' + #pageable.pageSize")
+    public List<EventDTO> findByOrganizerId(Long id, Pageable pageable) {
+        Page<Event> events = eventRepository.findByOrganizerId(id, pageable);
+        return events.map(eventMapper::toDTO).getContent();
     }
 
     @CacheEvict(value = "events", allEntries = true)

@@ -43,6 +43,14 @@ public class EventController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
+    @GetMapping("/findByOrganizerId/{id}")
+    public ResponseEntity<List<EventDTO>> findByOrganizerId(@PathVariable Long id,
+                                                            @RequestParam(defaultValue = "0") int page,
+                                                            @RequestParam(defaultValue = "5") int size) {
+        List<EventDTO> events = eventService.findByOrganizerId(id, PageRequest.of(page, size));
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<EventDTO> updateEvent(@PathVariable Long id, @RequestBody EventDTO eventDTO) {
         EventDTO updatedEvent = eventService.updateEvent(id, eventDTO);
