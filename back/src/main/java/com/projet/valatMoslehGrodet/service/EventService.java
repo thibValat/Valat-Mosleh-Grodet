@@ -65,7 +65,7 @@ public class EventService {
 
     @Cacheable(value = "events", key = "#pageable.pageNumber + '-' + #pageable.pageSize")
     public List<EventDTO> getAllEvents(Pageable pageable) {
-        List<Event> events = eventRepository.findAll();
+        List<Event> events = eventRepository.findAll(pageable).getContent();
         return events.stream().map(eventMapper::toDTO).collect(Collectors.toList());
     }
 

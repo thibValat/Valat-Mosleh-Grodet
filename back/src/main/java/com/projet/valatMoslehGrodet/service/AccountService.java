@@ -44,6 +44,7 @@ public class AccountService {
                 .orElse(null);
     }
 
+    @CacheEvict(value = "accountDetails", allEntries = true)
     public AccountDTO createAccount(AccountCreationDTO accountCreationDTO){
         accountCreationDTO.setPassword(passwordEncoder.encode(accountCreationDTO.getPassword()));
         Account accountToSave = new Account();
@@ -53,6 +54,8 @@ public class AccountService {
         return accountMapper.toDTO(accountToSave);
 
     }
+
+    @Cacheable(value = "accountDetails", key = "#accountSignInDTO.email")
     public AccountDTO logInAccount(AccountSignInDTO accountSignInDTO){
             Account account = accountRepository.findByEmail(accountSignInDTO.getEmail());
             if (account != null) {
