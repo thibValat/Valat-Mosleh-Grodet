@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-import java.util.Objects;
+
 
 @Service
 @AllArgsConstructor
@@ -68,6 +68,11 @@ public class AccountService {
     @CacheEvict(value = "accountDetails", allEntries = true)
     public void delete(Long id) {
         accountRepository.deleteById(id);
+    }
+
+    @Cacheable(value = "accountsByFullName", key = "{#acc.firstname, #acc.lastName}")
+    public List<AccountDTO> getAccountByFullName(String firstName, String lastName){
+        return accountMapper.toDtos(accountRepository.findByFirstNameAndLastName(firstName,lastName));
     }
 
 

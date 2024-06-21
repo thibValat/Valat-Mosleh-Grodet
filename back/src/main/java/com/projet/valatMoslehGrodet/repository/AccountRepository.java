@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
     public Account findByEmail(String email);
-    public Account findByFirstName(String firstName);
-    public Account findByLastName(String lastName);
     List<Account> findByFirstNameAndLastName(String firstName, String lastName);
 
 

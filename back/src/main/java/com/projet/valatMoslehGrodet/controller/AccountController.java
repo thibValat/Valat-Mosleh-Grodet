@@ -28,6 +28,11 @@ public class AccountController {
         return ResponseEntity.ok(accountService.getById(id));
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<AccountDTO> update(@PathVariable Long id, @RequestBody AccountDTO acountDTO) {
+        return ResponseEntity.ok(accountService.update(id, acountDTO));
+    }
+
     @PostMapping("/inscription")
     public ResponseEntity<AccountDTO> save(@RequestBody AccountCreationDTO accountCreationDto) {
         return ResponseEntity.ok(accountService.createAccount(accountCreationDto));
@@ -37,6 +42,17 @@ public class AccountController {
     public ResponseEntity<Object> signIn(@RequestBody AccountSignInDTO accountSignInDTO){
         return ResponseEntity.ok(accountService.logInAccount(accountSignInDTO));
 
+    }
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        accountService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/findByFullName")
+    public ResponseEntity<List<AccountDTO>> findByFullName(@RequestParam String firstName, @RequestParam String lastName)
+    {
+        return ResponseEntity.ok(accountService.getAccountByFullName(firstName, lastName));
     }
 
 }
